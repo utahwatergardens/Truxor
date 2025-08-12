@@ -419,3 +419,586 @@ focusableElements.forEach(element => {
 })
 
 console.log('Pond Cleanup website loaded successfully! 🚀')
+
+/*=============== ENHANCED CONTACT FORM FUNCTIONALITY ===============*/
+
+// Enhanced Contact Form Variables
+let currentStep = 1
+const totalSteps = 3
+
+// Initialize enhanced form if it exists
+document.addEventListener('DOMContentLoaded', function() {
+    const enhancedForm = document.getElementById('contact-form')
+    if (enhancedForm) {
+        initializeEnhancedForm()
+    }
+})
+
+function initializeEnhancedForm() {
+    // Initialize textarea counter
+    const messageTextarea = document.getElementById('message')
+    const messageCounter = document.getElementById('message-counter')
+    
+    if (messageTextarea && messageCounter) {
+        messageTextarea.addEventListener('input', function() {
+            const length = this.value.length
+            messageCounter.textContent = length
+            
+            if (length > 450) {
+                messageCounter.style.color = '#ef4444'
+            } else if (length > 400) {
+                messageCounter.style.color = '#f59e0b'
+            } else {
+                messageCounter.style.color = 'var(--gray-color)'
+            }
+        })
+    }
+    
+    // Initialize form submission
+    const form = document.getElementById('contact-form')
+    form.addEventListener('submit', handleFormSubmission)
+    
+    // Initialize input validation
+    initializeFormValidation()
+}
+
+// Multi-step navigation
+function nextStep(step) {
+    if (validateStep(step)) {
+        currentStep = step + 1
+        updateFormDisplay()
+        updateProgressIndicator()
+        
+        // Scroll to top of form
+        const formContainer = document.querySelector('.contact-form__container')
+        formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+}
+
+function prevStep(step) {
+    currentStep = step - 1
+    updateFormDisplay()
+    updateProgressIndicator()
+    
+    // Scroll to top of form
+    const formContainer = document.querySelector('.contact-form__container')
+    formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
+function updateFormDisplay() {
+    // Hide all steps
+    const steps = document.querySelectorAll('.form-step')
+    steps.forEach(step => {
+        step.classList.remove('active')
+    })
+    
+    // Show current step
+    const currentStepElement = document.querySelector(`[data-step="${currentStep}"]`)
+    if (currentStepElement) {
+        currentStepElement.classList.add('active')
+    }
+    
+    // Update review section if on step 3
+    if (currentStep === 3) {
+        updateReviewSection()
+    }
+}
+
+function updateProgressIndicator() {
+    const progressSteps = document.querySelectorAll('.form-progress__step')
+    
+    progressSteps.forEach((step, index) => {
+        const stepNumber = index + 1
+        step.classList.remove('active', 'completed')
+        
+        if (stepNumber === currentStep) {
+            step.classList.add('active')
+        } else if (stepNumber < currentStep) {
+            step.classList.add('completed')
+        }
+    })
+}
+
+// Form validation
+function validateStep(step) {
+    let isValid = true
+    const errors = {}
+    
+    switch (step) {
+        case 1:
+            // Validate contact information
+            const name = document.getElementById('name').value.trim()
+            const email = document.getElementById('email').value.trim()
+            const phone = document.getElementById('phone').value.trim()
+            const address = document.getElementById('address').value.trim()
+            
+            if (!name) {
+                errors.name = 'Full name is required'
+                isValid = false
+            } else if (name.length < 2) {
+                errors.name = 'Name must be at least 2 characters'
+                isValid = false
+            }
+            
+            if (!email) {
+                errors.email = 'Email is required'
+                isValid = false
+            } else if (!isValidEmail(email)) {
+                errors.email = 'Please enter a valid email address'
+                isValid = false
+            }
+            
+            if (!phone) {
+                errors.phone = 'Phone number is required'
+                isValid = false
+            } else if (!isValidPhone(phone)) {
+                errors.phone = 'Please enter a valid phone number'
+                isValid = false
+            }
+            
+            if (!address) {
+                errors.address = 'Property address is required'
+                isValid = false
+            }
+            break
+            
+        case 2:
+            // Validate project details
+            const service = document.getElementById('service').value
+            const waterBodySize = document.getElementById('water-body-size').value
+            const urgency = document.querySelector('input[name="urgency"]:checked')
+            const message = document.getElementById('message').value.trim()
+            
+            if (!service) {
+                errors.service = 'Please select a service'
+                isValid = false
+            }
+            
+            if (!waterBodySize) {
+                errors['water-body-size'] = 'Please select water body size'
+                isValid = false
+            }
+            
+            if (!urgency) {
+                errors.urgency = 'Please select urgency level'
+                isValid = false
+            }
+            
+            if (!message) {
+                errors.message = 'Project description is required'
+                isValid = false
+            } else if (message.length < 10) {
+                errors.message = 'Description must be at least 10 characters'
+                isValid = false
+            }
+            break
+    }
+    
+    // Display errors
+    displayErrors(errors)
+    
+    return isValid
+}
+
+function displayErrors(errors) {
+    // Clear all previous errors
+    const errorElements = document.querySelectorAll('.error-message')
+    errorElements.forEach(element => {
+        element.textContent = ''
+    })
+    
+    const inputElements = document.querySelectorAll('.contact__input')
+    inputElements.forEach(input => {
+        input.classList.remove('error', 'success')
+    })
+    
+    // Display new errors
+    Object.keys(errors).forEach(fieldName => {
+        const errorElement = document.getElementById(`${fieldName}-error`)
+        const inputElement = document.getElementById(fieldName)
+        
+        if (errorElement) {
+            errorElement.textContent = errors[fieldName]
+        }
+        
+        if (inputElement) {
+            inputElement.classList.add('error')
+        }
+    })
+}
+
+function initializeFormValidation() {
+    const inputs = document.querySelectorAll('.contact__input')
+    
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            validateField(this)
+        })
+        
+        input.addEventListener('input', function() {
+            // Remove error styling on input
+            this.classList.remove('error')
+            const errorElement = document.getElementById(`${this.id}-error`)
+            if (errorElement) {
+                errorElement.textContent = ''
+            }
+        })
+    })
+}
+
+function validateField(field) {
+    const value = field.value.trim()
+    const fieldName = field.id
+    let isValid = true
+    let errorMessage = ''
+    
+    switch (fieldName) {
+        case 'name':
+            if (!value) {
+                errorMessage = 'Full name is required'
+                isValid = false
+            } else if (value.length < 2) {
+                errorMessage = 'Name must be at least 2 characters'
+                isValid = false
+            }
+            break
+            
+        case 'email':
+            if (!value) {
+                errorMessage = 'Email is required'
+                isValid = false
+            } else if (!isValidEmail(value)) {
+                errorMessage = 'Please enter a valid email address'
+                isValid = false
+            }
+            break
+            
+        case 'phone':
+            if (!value) {
+                errorMessage = 'Phone number is required'
+                isValid = false
+            } else if (!isValidPhone(value)) {
+                errorMessage = 'Please enter a valid phone number'
+                isValid = false
+            }
+            break
+            
+        case 'address':
+            if (!value) {
+                errorMessage = 'Property address is required'
+                isValid = false
+            }
+            break
+            
+        case 'message':
+            if (!value) {
+                errorMessage = 'Project description is required'
+                isValid = false
+            } else if (value.length < 10) {
+                errorMessage = 'Description must be at least 10 characters'
+                isValid = false
+            }
+            break
+    }
+    
+    // Update field styling and error message
+    const errorElement = document.getElementById(`${fieldName}-error`)
+    
+    if (isValid) {
+        field.classList.remove('error')
+        field.classList.add('success')
+        if (errorElement) {
+            errorElement.textContent = ''
+        }
+    } else {
+        field.classList.remove('success')
+        field.classList.add('error')
+        if (errorElement) {
+            errorElement.textContent = errorMessage
+        }
+    }
+}
+
+// Validation helpers
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+}
+
+function isValidPhone(phone) {
+    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/
+    return phoneRegex.test(phone.replace(/\D/g, ''))
+}
+
+// Update review section
+function updateReviewSection() {
+    const reviewFields = {
+        'review-name': document.getElementById('name').value,
+        'review-email': document.getElementById('email').value,
+        'review-phone': document.getElementById('phone').value,
+        'review-address': document.getElementById('address').value,
+        'review-service': getServiceDisplayName(document.getElementById('service').value),
+        'review-size': getSizeDisplayName(document.getElementById('water-body-size').value),
+        'review-urgency': getUrgencyDisplayName(document.querySelector('input[name="urgency"]:checked')?.value),
+        'review-message': document.getElementById('message').value
+    }
+    
+    Object.keys(reviewFields).forEach(fieldId => {
+        const element = document.getElementById(fieldId)
+        if (element) {
+            element.textContent = reviewFields[fieldId] || 'Not provided'
+        }
+    })
+}
+
+function getServiceDisplayName(value) {
+    const serviceMap = {
+        'pond-cleanup': 'Pond Cleanup',
+        'lake-weed-removal': 'Lake Weed Removal',
+        'aquatic-vegetation-control': 'Aquatic Vegetation Control',
+        'pond-maintenance': 'Pond Maintenance',
+        'chemical-treatment': 'Chemical Treatment',
+        'biological-treatment': 'Biological Treatment',
+        'aeration-services': 'Aeration Services',
+        'emergency-service': 'Emergency Service',
+        'consultation': 'Consultation Only',
+        'other': 'Other'
+    }
+    return serviceMap[value] || value
+}
+
+function getSizeDisplayName(value) {
+    const sizeMap = {
+        'small': 'Small (under 1 acre)',
+        'medium': 'Medium (1-5 acres)',
+        'large': 'Large (5-20 acres)',
+        'very-large': 'Very Large (20+ acres)',
+        'unknown': 'Not sure'
+    }
+    return sizeMap[value] || value
+}
+
+function getUrgencyDisplayName(value) {
+    const urgencyMap = {
+        'emergency': 'Emergency - Need immediate attention',
+        'urgent': 'Urgent - Within 1-2 weeks',
+        'standard': 'Standard - Within 1-2 months',
+        'flexible': 'Flexible - No specific timeline'
+    }
+    return urgencyMap[value] || value
+}
+
+// Form submission handling
+function handleFormSubmission(e) {
+    e.preventDefault()
+    
+    // Validate final step
+    if (!validateStep(2)) {
+        return
+    }
+    
+    // Check agreement checkbox
+    const agreement = document.getElementById('agreement')
+    if (!agreement.checked) {
+        const errorElement = document.getElementById('agreement-error')
+        if (errorElement) {
+            errorElement.textContent = 'Please agree to the terms and conditions'
+        }
+        return
+    }
+    
+    // Get form data
+    const formData = new FormData(e.target)
+    const data = Object.fromEntries(formData)
+    
+    // Show loading state
+    const submitButton = e.target.querySelector('.button--submit')
+    const originalText = submitButton.innerHTML
+    submitButton.innerHTML = '<i class="ri-loader-4-line"></i> Submitting...'
+    submitButton.disabled = true
+    
+    // Simulate form submission (replace with actual API call)
+    setTimeout(() => {
+        // Show success message
+        showSuccessMessage()
+        
+        // Reset button
+        submitButton.innerHTML = originalText
+        submitButton.disabled = false
+    }, 2000)
+}
+
+function showSuccessMessage() {
+    const form = document.getElementById('contact-form')
+    const successMessage = document.getElementById('form-success')
+    
+    if (form && successMessage) {
+        form.style.display = 'none'
+        successMessage.style.display = 'block'
+        
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+}
+
+function resetForm() {
+    const form = document.getElementById('contact-form')
+    const successMessage = document.getElementById('form-success')
+    
+    if (form && successMessage) {
+        // Reset form
+        form.reset()
+        
+        // Reset to first step
+        currentStep = 1
+        updateFormDisplay()
+        updateProgressIndicator()
+        
+        // Clear all errors and styling
+        const errorElements = document.querySelectorAll('.error-message')
+        errorElements.forEach(element => {
+            element.textContent = ''
+        })
+        
+        const inputElements = document.querySelectorAll('.contact__input')
+        inputElements.forEach(input => {
+            input.classList.remove('error', 'success')
+        })
+        
+        // Reset textarea counter
+        const messageCounter = document.getElementById('message-counter')
+        if (messageCounter) {
+            messageCounter.textContent = '0'
+            messageCounter.style.color = 'var(--gray-color)'
+        }
+        
+        // Show form, hide success message
+        form.style.display = 'block'
+        successMessage.style.display = 'none'
+        
+        // Scroll to top of form
+        const formContainer = document.querySelector('.contact-form__container')
+        formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+}
+
+// Make functions globally available
+window.nextStep = nextStep
+window.prevStep = prevStep
+window.resetForm = resetForm
+
+console.log('Enhanced contact form functionality loaded! 🚀')
+
+/*=============== HERO IMAGE OPTIMIZATION ===============*/
+
+// Preload hero images for better performance
+const heroImages = [
+    'images/image004.jpg',    // Home page hero
+    'images/image003.jpg',    // Services page hero
+    'images/image006.jpg',    // Equipment page hero
+    'images/image004.jpg',    // Treatment page hero
+    'images/image004.jpg',    // About page hero
+    'images/image002.jpg',    // Contact page hero
+    'images/image001.png'     // Partners page hero
+]
+
+// Preload hero images
+function preloadHeroImages() {
+    heroImages.forEach(imageSrc => {
+        const img = new Image()
+        img.src = imageSrc
+        img.onload = function() {
+            console.log(`Hero image loaded: ${imageSrc}`)
+        }
+        img.onerror = function() {
+            console.warn(`Failed to load hero image: ${imageSrc}`)
+        }
+    })
+}
+
+// Optimize hero image loading
+function optimizeHeroImages() {
+    const pageHeaders = document.querySelectorAll('.page-header')
+    
+    pageHeaders.forEach(header => {
+        // Add loading class initially
+        header.classList.add('loading')
+        
+        // Remove loading class after image is loaded
+        const backgroundImage = getComputedStyle(header).backgroundImage
+        if (backgroundImage && backgroundImage !== 'none') {
+            const img = new Image()
+            img.onload = function() {
+                header.classList.remove('loading')
+            }
+            img.onerror = function() {
+                header.classList.remove('loading')
+            }
+            
+            // Extract image URL from background-image
+            const urlMatch = backgroundImage.match(/url\(['"]?([^'"]+)['"]?\)/)
+            if (urlMatch) {
+                img.src = urlMatch[1]
+            }
+        }
+    })
+}
+
+// Initialize hero image optimization
+document.addEventListener('DOMContentLoaded', function() {
+    preloadHeroImages()
+    optimizeHeroImages()
+})
+
+// Optimize home page hero image
+const homeImg = document.querySelector('.home__img')
+if (homeImg) {
+    homeImg.addEventListener('load', function() {
+        this.style.opacity = '1'
+        this.style.transform = 'scale(1)'
+    })
+    
+    // Add loading animation
+    homeImg.style.opacity = '0'
+    homeImg.style.transform = 'scale(0.95)'
+    homeImg.style.transition = 'opacity 0.6s ease, transform 0.6s ease'
+}
+
+console.log('Hero image optimization loaded! 🖼️')
+
+/*=============== FAQ FUNCTIONALITY ===============*/
+
+// FAQ Accordion functionality
+function initializeFAQ() {
+    const faqItems = document.querySelectorAll('.faq__item')
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq__question')
+        const answer = item.querySelector('.faq__answer')
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active')
+            
+            // Close all other FAQ items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active')
+                }
+            })
+            
+            // Toggle current item
+            if (isActive) {
+                item.classList.remove('active')
+            } else {
+                item.classList.add('active')
+            }
+        })
+    })
+}
+
+// Initialize FAQ when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeFAQ()
+})
+
+console.log('FAQ functionality loaded! ❓')

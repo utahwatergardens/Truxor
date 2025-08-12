@@ -78,6 +78,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     
     <!-- Favicon and App Icons -->
     <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
@@ -102,9 +103,9 @@
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="#home" class="nav__link">Home</a>
+                        <a href="index.html" class="nav__link nav__link--active">Home</a>
                     </li>
-                                        <li class="nav__item">
+                    <li class="nav__item">
                         <a href="services.html" class="nav__link">Services</a>
                     </li>
                     <li class="nav__item">
@@ -118,6 +119,9 @@
                     </li>
                     <li class="nav__item">
                         <a href="about.html" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#faq" class="nav__link">FAQ</a>
                     </li>
                     <li class="nav__item">
                         <a href="contact.html" class="nav__link">Contact</a>
@@ -137,6 +141,17 @@
 
     <!-- Main -->
     <main class="main">
+        <!-- Urgency Banner -->
+        <section class="urgency-banner">
+            <div class="container">
+                <div class="urgency-banner__content">
+                    <i class="ri-time-line"></i>
+                    <span>Limited Time: Free Consultation + 10% Off First Service for Utah Residents</span>
+                    <a href="contact.html" class="urgency-banner__cta">Claim Offer</a>
+                </div>
+            </div>
+        </section>
+        
         <!-- Home -->
         <section class="home section" id="home">
             <div class="home__container container grid">
@@ -151,10 +166,12 @@
                     
                                          <div class="home__buttons">
                          <a href="contact.html" class="button">
-                             Get Free Quote
+                             <i class="ri-phone-line"></i>
+                             Get Free Quote Now
                          </a>
-                         <a href="services.html" class="button button--ghost">
-                             Our Services
+                         <a href="equipment.html" class="button button--ghost">
+                             <i class="ri-tools-line"></i>
+                             See Truxor T50
                          </a>
                      </div>
                     
@@ -172,10 +189,25 @@
                             <p>Years Experience</p>
                         </div>
                     </div>
+                    
+                    <div class="home__trust">
+                        <div class="home__trust-item">
+                            <i class="ri-shield-check-line"></i>
+                            <span>Licensed & Insured</span>
+                        </div>
+                        <div class="home__trust-item">
+                            <i class="ri-award-line"></i>
+                            <span>Truxor Certified</span>
+                        </div>
+                        <div class="home__trust-item">
+                            <i class="ri-time-line"></i>
+                            <span>Same Day Service</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="home__image">
-                    <img src="images/image004.jpg" alt="Truxor T50 actively operating in pond cleanup with professional operator" class="home__img">
+                    <img src="images/image004.jpg" alt="Professional Truxor T50 pond cleanup equipment operating in clear water with expert operator" class="home__img">
                 </div>
             </div>
         </section>
@@ -540,6 +572,162 @@
                         </div>
                         <button type="submit" class="button">Get Free Quote</button>
                     </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials section" id="testimonials">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">What Our Clients Say</h2>
+                    <p class="section__subtitle">
+                        Real feedback from satisfied customers across Utah
+                    </p>
+                </div>
+                
+                <div class="testimonials__container">
+                    <div class="testimonials__row">
+                        <div class="testimonials__card">
+                            <div class="testimonials__rating">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                            <p class="testimonials__text">
+                                "The Truxor T50 equipment is incredible! They completely transformed our overgrown pond in just one day. The water is crystal clear now and our fish are thriving. Highly recommend!"
+                            </p>
+                            <div class="testimonials__author">
+                                <div class="testimonials__avatar">
+                                    <i class="ri-user-3-line"></i>
+                                </div>
+                                <div class="testimonials__info">
+                                    <h4 class="testimonials__name">Sarah Johnson</h4>
+                                    <p class="testimonials__location">Park City, UT</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonials__card">
+                            <div class="testimonials__rating">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                            <p class="testimonials__text">
+                                "Professional service from start to finish. Their expertise with aquatic vegetation control saved our lake from invasive species. The Truxor equipment is the real deal!"
+                            </p>
+                            <div class="testimonials__author">
+                                <div class="testimonials__avatar">
+                                    <i class="ri-user-3-line"></i>
+                                </div>
+                                <div class="testimonials__info">
+                                    <h4 class="testimonials__name">Mike Thompson</h4>
+                                    <p class="testimonials__location">Provo, UT</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonials__card">
+                            <div class="testimonials__rating">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                            <p class="testimonials__text">
+                                "Outstanding results! Our pond was completely overrun with weeds and algae. The team came in with their professional equipment and restored it to pristine condition."
+                            </p>
+                            <div class="testimonials__author">
+                                <div class="testimonials__avatar">
+                                    <i class="ri-user-3-line"></i>
+                                </div>
+                                <div class="testimonials__info">
+                                    <h4 class="testimonials__name">Lisa Chen</h4>
+                                    <p class="testimonials__location">Salt Lake City, UT</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq section" id="faq">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Frequently Asked Questions</h2>
+                    <p class="section__subtitle">
+                        Get answers to common questions about our pond and lake cleanup services
+                    </p>
+                </div>
+                
+                <div class="faq__container">
+                    <div class="faq__item">
+                        <div class="faq__question">
+                            <h3>How much does pond cleanup cost?</h3>
+                            <i class="ri-add-line faq__icon"></i>
+                        </div>
+                        <div class="faq__answer">
+                            <p>Pond cleanup costs vary based on size, condition, and specific services needed. We offer free consultations and quotes. Typical projects range from $500-$5,000 depending on pond size and complexity.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq__item">
+                        <div class="faq__question">
+                            <h3>How long does a typical cleanup take?</h3>
+                            <i class="ri-add-line faq__icon"></i>
+                        </div>
+                        <div class="faq__answer">
+                            <p>Most pond cleanups are completed in 1-3 days depending on size and condition. Our Truxor T50 equipment is highly efficient and can handle large areas quickly while maintaining quality results.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq__item">
+                        <div class="faq__question">
+                            <h3>Do you offer maintenance plans?</h3>
+                            <i class="ri-add-line faq__icon"></i>
+                        </div>
+                        <div class="faq__answer">
+                            <p>Yes! We offer seasonal maintenance plans to keep your pond healthy year-round. This includes regular inspections, vegetation control, and water quality monitoring to prevent future problems.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq__item">
+                        <div class="faq__question">
+                            <h3>Is the Truxor T50 safe for fish and wildlife?</h3>
+                            <i class="ri-add-line faq__icon"></i>
+                        </div>
+                        <div class="faq__answer">
+                            <p>Absolutely! The Truxor T50 is designed to be environmentally friendly. It uses selective cutting methods that preserve beneficial vegetation while removing invasive species, ensuring minimal impact on fish and wildlife.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq__item">
+                        <div class="faq__question">
+                            <h3>What areas do you serve in Utah?</h3>
+                            <i class="ri-add-line faq__icon"></i>
+                        </div>
+                        <div class="faq__answer">
+                            <p>We serve the entire state of Utah including Salt Lake City, Provo, Park City, Ogden, and surrounding areas. Contact us to confirm service availability in your specific location.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq__item">
+                        <div class="faq__question">
+                            <h3>Do you provide emergency services?</h3>
+                            <i class="ri-add-line faq__icon"></i>
+                        </div>
+                        <div class="faq__answer">
+                            <p>Yes, we offer emergency pond and lake cleanup services for urgent situations. We understand that water quality issues can escalate quickly, and we're available to respond promptly when needed.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     
     <!-- Favicon and App Icons -->
     <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
@@ -72,7 +73,7 @@
     <!-- Main -->
     <main class="main">
         <!-- Page Header -->
-        <section class="page-header section">
+        <section class="page-header page-header--contact section">
             <div class="container">
                 <div class="page-header__content">
                     <h1 class="page-header__title">Contact Us</h1>
@@ -145,96 +146,294 @@
                     </div>
 
                     <div class="contact-form__container">
-                        <h2>Request Free Quote</h2>
-                        <form class="contact__form" id="contact-form">
-                            <div class="contact__inputs">
-                                <div class="contact__content">
-                                    <label for="name" class="contact__label">Full Name</label>
-                                    <input type="text" name="name" id="name" placeholder="Enter your full name" class="contact__input" required>
+                        <div class="contact-form__header">
+                            <h2>Request Free Quote</h2>
+                            <p class="contact-form__subtitle">Get your personalized quote in 24 hours or less</p>
+                        </div>
+                        
+                        <form class="contact__form" id="contact-form" novalidate>
+                            <!-- Progress Indicator -->
+                            <div class="form-progress">
+                                <div class="form-progress__step active" data-step="1">
+                                    <span class="form-progress__number">1</span>
+                                    <span class="form-progress__label">Contact Info</span>
                                 </div>
-
-                                <div class="contact__content">
-                                    <label for="email" class="contact__label">Email</label>
-                                    <input type="email" name="email" id="email" placeholder="Enter your email address" class="contact__input" required>
+                                <div class="form-progress__step" data-step="2">
+                                    <span class="form-progress__number">2</span>
+                                    <span class="form-progress__label">Project Details</span>
                                 </div>
-
-                                <div class="contact__content">
-                                    <label for="phone" class="contact__label">Phone</label>
-                                    <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" class="contact__input" required>
-                                </div>
-
-                                <div class="contact__content">
-                                    <label for="address" class="contact__label">Property Address</label>
-                                    <input type="text" name="address" id="address" placeholder="Enter your property address" class="contact__input" required>
-                                </div>
-
-                                <div class="contact__content">
-                                    <label for="service" class="contact__label">Service Needed</label>
-                                    <select name="service" id="service" class="contact__input" required>
-                                        <option value="">Select a service</option>
-                                        <option value="pond-cleanup">Pond Cleanup</option>
-                                        <option value="lake-weed-removal">Lake Weed Removal</option>
-                                        <option value="aquatic-vegetation-control">Aquatic Vegetation Control</option>
-                                        <option value="pond-maintenance">Pond Maintenance</option>
-                                        <option value="chemical-treatment">Chemical Treatment</option>
-                                        <option value="biological-treatment">Biological Treatment</option>
-                                        <option value="aeration-services">Aeration Services</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-
-                                <div class="contact__content">
-                                    <label for="water-body-size" class="contact__label">Water Body Size</label>
-                                    <select name="water-body-size" id="water-body-size" class="contact__input" required>
-                                        <option value="">Select size</option>
-                                        <option value="small">Small (under 1 acre)</option>
-                                        <option value="medium">Medium (1-5 acres)</option>
-                                        <option value="large">Large (5-20 acres)</option>
-                                        <option value="very-large">Very Large (20+ acres)</option>
-                                    </select>
+                                <div class="form-progress__step" data-step="3">
+                                    <span class="form-progress__number">3</span>
+                                    <span class="form-progress__label">Review & Submit</span>
                                 </div>
                             </div>
 
-                            <div class="contact__content">
-                                <label for="message" class="contact__label">Project Details</label>
-                                <textarea name="message" id="message" cols="0" rows="7" placeholder="Describe your project needs, current issues, and any specific requirements" class="contact__input" required></textarea>
-                            </div>
+                            <!-- Step 1: Contact Information -->
+                            <div class="form-step active" data-step="1">
+                                <h3 class="form-step__title">Contact Information</h3>
+                                <p class="form-step__description">Tell us how to reach you</p>
+                                
+                                <div class="contact__inputs">
+                                    <div class="contact__content">
+                                        <label for="name" class="contact__label">
+                                            Full Name <span class="required">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <i class="ri-user-line input-icon"></i>
+                                            <input type="text" name="name" id="name" placeholder="Enter your full name" class="contact__input" required>
+                                        </div>
+                                        <span class="error-message" id="name-error"></span>
+                                    </div>
 
-                            <div class="contact__content">
-                                <label for="timeline" class="contact__label">Preferred Timeline</label>
-                                <select name="timeline" id="timeline" class="contact__input" required>
-                                    <option value="">Select timeline</option>
-                                    <option value="asap">As soon as possible</option>
-                                    <option value="within-week">Within a week</option>
-                                    <option value="within-month">Within a month</option>
-                                    <option value="flexible">Flexible</option>
-                                </select>
-                            </div>
+                                    <div class="contact__content">
+                                        <label for="email" class="contact__label">
+                                            Email Address <span class="required">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <i class="ri-mail-line input-icon"></i>
+                                            <input type="email" name="email" id="email" placeholder="Enter your email address" class="contact__input" required>
+                                        </div>
+                                        <span class="error-message" id="email-error"></span>
+                                    </div>
 
-                            <div class="contact__content">
-                                <label class="contact__label">How did you hear about us?</label>
-                                <div class="contact__radio-group">
-                                    <label class="contact__radio">
-                                        <input type="radio" name="source" value="google" class="contact__radio-input">
-                                        <span class="contact__radio-text">Google Search</span>
-                                    </label>
-                                    <label class="contact__radio">
-                                        <input type="radio" name="source" value="social-media" class="contact__radio-input">
-                                        <span class="contact__radio-text">Social Media</span>
-                                    </label>
-                                    <label class="contact__radio">
-                                        <input type="radio" name="source" value="referral" class="contact__radio-input">
-                                        <span class="contact__radio-text">Referral</span>
-                                    </label>
-                                    <label class="contact__radio">
-                                        <input type="radio" name="source" value="other" class="contact__radio-input">
-                                        <span class="contact__radio-text">Other</span>
-                                    </label>
+                                    <div class="contact__content">
+                                        <label for="phone" class="contact__label">
+                                            Phone Number <span class="required">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <i class="ri-phone-line input-icon"></i>
+                                            <input type="tel" name="phone" id="phone" placeholder="(801) 555-0123" class="contact__input" required>
+                                        </div>
+                                        <span class="error-message" id="phone-error"></span>
+                                    </div>
+
+                                    <div class="contact__content">
+                                        <label for="address" class="contact__label">
+                                            Property Address <span class="required">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <i class="ri-map-pin-line input-icon"></i>
+                                            <input type="text" name="address" id="address" placeholder="Enter your property address" class="contact__input" required>
+                                        </div>
+                                        <span class="error-message" id="address-error"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-step__buttons">
+                                    <button type="button" class="button button--next" onclick="nextStep(1)">Next: Project Details</button>
                                 </div>
                             </div>
 
-                            <button type="submit" class="button">Send Message</button>
+                            <!-- Step 2: Project Details -->
+                            <div class="form-step" data-step="2">
+                                <h3 class="form-step__title">Project Details</h3>
+                                <p class="form-step__description">Tell us about your project</p>
+                                
+                                <div class="contact__inputs">
+                                    <div class="contact__content">
+                                        <label for="service" class="contact__label">
+                                            Service Needed <span class="required">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <i class="ri-tools-line input-icon"></i>
+                                            <select name="service" id="service" class="contact__input" required>
+                                                <option value="">Select a service</option>
+                                                <option value="pond-cleanup">Pond Cleanup</option>
+                                                <option value="lake-weed-removal">Lake Weed Removal</option>
+                                                <option value="aquatic-vegetation-control">Aquatic Vegetation Control</option>
+                                                <option value="pond-maintenance">Pond Maintenance</option>
+                                                <option value="chemical-treatment">Chemical Treatment</option>
+                                                <option value="biological-treatment">Biological Treatment</option>
+                                                <option value="aeration-services">Aeration Services</option>
+                                                <option value="emergency-service">Emergency Service</option>
+                                                <option value="consultation">Consultation Only</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <span class="error-message" id="service-error"></span>
+                                    </div>
+
+                                    <div class="contact__content">
+                                        <label for="water-body-size" class="contact__label">
+                                            Water Body Size <span class="required">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <i class="ri-water-flash-line input-icon"></i>
+                                            <select name="water-body-size" id="water-body-size" class="contact__input" required>
+                                                <option value="">Select size</option>
+                                                <option value="small">Small (under 1 acre)</option>
+                                                <option value="medium">Medium (1-5 acres)</option>
+                                                <option value="large">Large (5-20 acres)</option>
+                                                <option value="very-large">Very Large (20+ acres)</option>
+                                                <option value="unknown">Not sure</option>
+                                            </select>
+                                        </div>
+                                        <span class="error-message" id="water-body-size-error"></span>
+                                    </div>
+
+                                    <div class="contact__content">
+                                        <label for="urgency" class="contact__label">
+                                            Urgency Level <span class="required">*</span>
+                                        </label>
+                                        <div class="urgency-options">
+                                            <label class="urgency-option">
+                                                <input type="radio" name="urgency" value="emergency" class="urgency-input">
+                                                <div class="urgency-content">
+                                                    <i class="ri-error-warning-line urgency-icon emergency"></i>
+                                                    <span class="urgency-text">Emergency</span>
+                                                    <span class="urgency-description">Need immediate attention</span>
+                                                </div>
+                                            </label>
+                                            <label class="urgency-option">
+                                                <input type="radio" name="urgency" value="urgent" class="urgency-input">
+                                                <div class="urgency-content">
+                                                    <i class="ri-time-line urgency-icon urgent"></i>
+                                                    <span class="urgency-text">Urgent</span>
+                                                    <span class="urgency-description">Within 1-2 weeks</span>
+                                                </div>
+                                            </label>
+                                            <label class="urgency-option">
+                                                <input type="radio" name="urgency" value="standard" class="urgency-input">
+                                                <div class="urgency-content">
+                                                    <i class="ri-calendar-line urgency-icon standard"></i>
+                                                    <span class="urgency-text">Standard</span>
+                                                    <span class="urgency-description">Within 1-2 months</span>
+                                                </div>
+                                            </label>
+                                            <label class="urgency-option">
+                                                <input type="radio" name="urgency" value="flexible" class="urgency-input">
+                                                <div class="urgency-content">
+                                                    <i class="ri-calendar-check-line urgency-icon flexible"></i>
+                                                    <span class="urgency-text">Flexible</span>
+                                                    <span class="urgency-description">No specific timeline</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <span class="error-message" id="urgency-error"></span>
+                                    </div>
+
+                                    <div class="contact__content">
+                                        <label for="message" class="contact__label">
+                                            Project Description <span class="required">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <i class="ri-file-text-line input-icon"></i>
+                                            <textarea name="message" id="message" rows="5" placeholder="Describe your current issues, specific requirements, and any concerns you have about your pond or lake..." class="contact__input" required></textarea>
+                                        </div>
+                                        <div class="textarea-counter">
+                                            <span id="message-counter">0</span>/500 characters
+                                        </div>
+                                        <span class="error-message" id="message-error"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-step__buttons">
+                                    <button type="button" class="button button--ghost" onclick="prevStep(2)">Back</button>
+                                    <button type="button" class="button button--next" onclick="nextStep(2)">Next: Review & Submit</button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Review & Submit -->
+                            <div class="form-step" data-step="3">
+                                <h3 class="form-step__title">Review & Submit</h3>
+                                <p class="form-step__description">Please review your information before submitting</p>
+                                
+                                <div class="form-review">
+                                    <div class="review-section">
+                                        <h4>Contact Information</h4>
+                                        <div class="review-item">
+                                            <span class="review-label">Name:</span>
+                                            <span class="review-value" id="review-name"></span>
+                                        </div>
+                                        <div class="review-item">
+                                            <span class="review-label">Email:</span>
+                                            <span class="review-value" id="review-email"></span>
+                                        </div>
+                                        <div class="review-item">
+                                            <span class="review-label">Phone:</span>
+                                            <span class="review-value" id="review-phone"></span>
+                                        </div>
+                                        <div class="review-item">
+                                            <span class="review-label">Address:</span>
+                                            <span class="review-value" id="review-address"></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="review-section">
+                                        <h4>Project Details</h4>
+                                        <div class="review-item">
+                                            <span class="review-label">Service:</span>
+                                            <span class="review-value" id="review-service"></span>
+                                        </div>
+                                        <div class="review-item">
+                                            <span class="review-label">Water Body Size:</span>
+                                            <span class="review-value" id="review-size"></span>
+                                        </div>
+                                        <div class="review-item">
+                                            <span class="review-label">Urgency:</span>
+                                            <span class="review-value" id="review-urgency"></span>
+                                        </div>
+                                        <div class="review-item">
+                                            <span class="review-label">Description:</span>
+                                            <span class="review-value" id="review-message"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contact__content">
+                                    <label class="contact__label">How did you hear about us?</label>
+                                    <div class="contact__radio-group">
+                                        <label class="contact__radio">
+                                            <input type="radio" name="source" value="google" class="contact__radio-input">
+                                            <span class="contact__radio-text">Google Search</span>
+                                        </label>
+                                        <label class="contact__radio">
+                                            <input type="radio" name="source" value="social-media" class="contact__radio-input">
+                                            <span class="contact__radio-text">Social Media</span>
+                                        </label>
+                                        <label class="contact__radio">
+                                            <input type="radio" name="source" value="referral" class="contact__radio-input">
+                                            <span class="contact__radio-text">Referral</span>
+                                        </label>
+                                        <label class="contact__radio">
+                                            <input type="radio" name="source" value="other" class="contact__radio-input">
+                                            <span class="contact__radio-text">Other</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="contact__content">
+                                    <label class="contact__checkbox">
+                                        <input type="checkbox" name="agreement" id="agreement" class="contact__checkbox-input" required>
+                                        <span class="contact__checkbox-text">
+                                            I agree to receive communications from PondCleanup.com and understand that my information will be used in accordance with the <a href="#" class="link">Privacy Policy</a>.
+                                        </span>
+                                    </label>
+                                    <span class="error-message" id="agreement-error"></span>
+                                </div>
+
+                                <div class="form-step__buttons">
+                                    <button type="button" class="button button--ghost" onclick="prevStep(3)">Back</button>
+                                    <button type="submit" class="button button--submit">
+                                        <i class="ri-send-plane-line"></i>
+                                        Submit Quote Request
+                                    </button>
+                                </div>
+                            </div>
                         </form>
+
+                        <!-- Success Message -->
+                        <div class="form-success" id="form-success" style="display: none;">
+                            <div class="success-icon">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <h3>Thank You!</h3>
+                            <p>Your quote request has been submitted successfully. We'll get back to you within 24 hours with your personalized quote.</p>
+                            <div class="success-actions">
+                                <button class="button" onclick="resetForm()">Submit Another Request</button>
+                                <a href="tel:+1-801-555-0123" class="button button--ghost">Call Us Now</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
