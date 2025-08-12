@@ -1,0 +1,27 @@
+<svg width="200" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="plantGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10B981;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="60" r="50" fill="url(#waterGradient)" opacity="0.1"/>
+  
+  <!-- Water ripples -->
+  <circle cx="100" cy="60" r="35" fill="none" stroke="url(#waterGradient)" stroke-width="2" opacity="0.6"/>
+  <circle cx="100" cy="60" r="25" fill="none" stroke="url(#waterGradient)" stroke-width="2" opacity="0.8"/>
+  <circle cx="100" cy="60" r="15" fill="url(#waterGradient)" opacity="0.3"/>
+  
+  <!-- Plant elements -->
+  <path d="M85 45 Q90 35 95 45 Q100 35 105 45 Q110 35 115 45" fill="none" stroke="url(#plantGradient)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M80 50 Q85 40 90 50 Q95 40 100 50 Q105 40 110 50 Q115 40 120 50" fill="none" stroke="url(#plantGradient)" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Text -->
+  <text x="100" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1E40AF">UTAH WATER GARDENS</text>
+</svg>
