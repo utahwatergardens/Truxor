@@ -775,6 +775,195 @@ img {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
+/*=============== BEFORE & AFTER ===============*/
+.before-after {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.before-after::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(5,150,105,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(5,150,105,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(5,150,105,0.1)"/><circle cx="10" cy="60" r="0.5" fill="rgba(5,150,105,0.1)"/><circle cx="90" cy="40" r="0.5" fill="rgba(5,150,105,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.before-after__container {
+    position: relative;
+    z-index: 2;
+}
+
+.before-after__row {
+    margin-bottom: 4rem;
+}
+
+.before-after__row:last-child {
+    margin-bottom: 0;
+}
+
+.before-after__item {
+    background: var(--white-color);
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(5, 150, 105, 0.1);
+    transition: all 0.3s ease;
+}
+
+.before-after__item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.15);
+}
+
+.before-after__comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    position: relative;
+}
+
+.before-after__image {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+}
+
+.before-after__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.before-after__item:hover .before-after__image img {
+    transform: scale(1.05);
+}
+
+.before-after__label {
+    position: absolute;
+    top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: var(--font-bold);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.before-after__label--before {
+    left: 1rem;
+    background: rgba(220, 38, 38, 0.9);
+    color: var(--white-color);
+}
+
+.before-after__label--after {
+    right: 1rem;
+    background: rgba(5, 150, 105, 0.9);
+    color: var(--white-color);
+}
+
+.before-after__content {
+    padding: 2.5rem;
+}
+
+.before-after__content h3 {
+    font-size: 1.75rem;
+    font-weight: var(--font-bold);
+    color: var(--black-color);
+    margin-bottom: 1rem;
+}
+
+.before-after__content p {
+    color: var(--text-color);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.before-after__features {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.75rem;
+}
+
+.before-after__features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--dark-gray);
+    font-size: 1rem;
+    font-weight: var(--font-medium);
+}
+
+.before-after__features li i {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    font-weight: var(--font-bold);
+}
+
+.before-after__cta {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 3rem;
+    background: var(--white-color);
+    border-radius: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(5, 150, 105, 0.1);
+}
+
+.before-after__cta h3 {
+    font-size: 2rem;
+    font-weight: var(--font-bold);
+    color: var(--black-color);
+    margin-bottom: 1rem;
+}
+
+.before-after__cta p {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Responsive Design for Before & After */
+@media screen and (max-width: 768px) {
+    .before-after__comparison {
+        grid-template-columns: 1fr;
+    }
+    
+    .before-after__image {
+        height: 300px;
+    }
+    
+    .before-after__content {
+        padding: 2rem;
+    }
+    
+    .before-after__content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .before-after__features {
+        grid-template-columns: 1fr;
+    }
+    
+    .before-after__cta {
+        padding: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .before-after__cta h3 {
+        font-size: 1.75rem;
+    }
+}
+
 /*=============== FAQ ===============*/
 .faq {
     background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
