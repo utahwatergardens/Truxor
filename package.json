@@ -1,0 +1,33 @@
+{
+  "name": "pondcleanup",
+  "version": "1.0.0",
+  "description": "Professional pond cleanup and lake weed removal services website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build required'",
+    "start": "npx serve .",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "pond-cleanup",
+    "lake-weed-removal",
+    "aquatic-vegetation-control",
+    "truxor",
+    "utah-pond-services",
+    "seo-optimized"
+  ],
+  "author": "Pond Cleanup Pro",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DeepthinkAIapp/pondcleanup.git"
+  },
+  "homepage": "https://pondcleanup.com"
+}
