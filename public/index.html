@@ -78,7 +78,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/logo/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/logo/android-chrome-512x512.png">
+    <link rel="manifest" href="images/logo/site.webmanifest">
 </head>
 <body>
     <!-- Header -->
@@ -86,6 +94,7 @@
         <nav class="nav container">
             <div class="nav__logo">
                 <a href="#home">
+                    <img src="images/logo/e57adc99-4a4f-4b26-bf03-82c87a37c16e.png" alt="Pond Cleanup Pro Logo" class="nav__logo-img">
                     <h2>PondCleanup<span>.com</span></h2>
                 </a>
             </div>
@@ -98,12 +107,15 @@
                     <li class="nav__item">
                         <a href="#services" class="nav__link">Services</a>
                     </li>
-                    <li class="nav__item">
-                        <a href="#equipment" class="nav__link">Equipment</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#about" class="nav__link">About</a>
-                    </li>
+                                         <li class="nav__item">
+                         <a href="#equipment" class="nav__link">Equipment</a>
+                     </li>
+                     <li class="nav__item">
+                         <a href="#treatment" class="nav__link">Treatment</a>
+                     </li>
+                     <li class="nav__item">
+                         <a href="#about" class="nav__link">About</a>
+                     </li>
                     <li class="nav__item">
                         <a href="#contact" class="nav__link">Contact</a>
                     </li>
@@ -176,72 +188,84 @@
                 </div>
                 
                 <div class="services__container grid">
-                    <article class="services__card">
-                        <div class="services__icon">
-                            <i class="ri-water-flash-line"></i>
+                    <article class="services__card services__card--pond-cleanup">
+                        <div class="services__card-bg"></div>
+                        <div class="services__card-content">
+                            <div class="services__icon">
+                                <i class="ri-water-flash-line"></i>
+                            </div>
+                            <h3 class="services__title">Pond Cleanup</h3>
+                            <p class="services__description">
+                                Professional pond cleanup services including debris removal, 
+                                aquatic weed control, and water quality improvement.
+                            </p>
+                            <ul class="services__list">
+                                <li>Aquatic vegetation removal</li>
+                                <li>Debris and sediment cleanup</li>
+                                <li>Water quality restoration</li>
+                                <li>Preventive maintenance</li>
+                            </ul>
                         </div>
-                        <h3 class="services__title">Pond Cleanup</h3>
-                        <p class="services__description">
-                            Professional pond cleanup services including debris removal, 
-                            aquatic weed control, and water quality improvement.
-                        </p>
-                        <ul class="services__list">
-                            <li>Aquatic vegetation removal</li>
-                            <li>Debris and sediment cleanup</li>
-                            <li>Water quality restoration</li>
-                            <li>Preventive maintenance</li>
-                        </ul>
                     </article>
                     
-                    <article class="services__card">
-                        <div class="services__icon">
-                            <i class="ri-plant-line"></i>
+                    <article class="services__card services__card--weed-removal">
+                        <div class="services__card-bg"></div>
+                        <div class="services__card-content">
+                            <div class="services__icon">
+                                <i class="ri-plant-line"></i>
+                            </div>
+                            <h3 class="services__title">Lake Weed Removal</h3>
+                            <p class="services__description">
+                                Expert lake weed removal using advanced Truxor T50 equipment 
+                                for efficient aquatic vegetation control.
+                            </p>
+                            <ul class="services__list">
+                                <li>Invasive species removal</li>
+                                <li>Native vegetation management</li>
+                                <li>Algae control</li>
+                                <li>Ecosystem balance</li>
+                            </ul>
                         </div>
-                        <h3 class="services__title">Lake Weed Removal</h3>
-                        <p class="services__description">
-                            Expert lake weed removal using advanced Truxor T50 equipment 
-                            for efficient aquatic vegetation control.
-                        </p>
-                        <ul class="services__list">
-                            <li>Invasive species removal</li>
-                            <li>Native vegetation management</li>
-                            <li>Algae control</li>
-                            <li>Ecosystem balance</li>
-                        </ul>
                     </article>
                     
-                    <article class="services__card">
-                        <div class="services__icon">
-                            <i class="ri-tools-line"></i>
+                    <article class="services__card services__card--vegetation-control">
+                        <div class="services__card-bg"></div>
+                        <div class="services__card-content">
+                            <div class="services__icon">
+                                <i class="ri-tools-line"></i>
+                            </div>
+                            <h3 class="services__title">Aquatic Vegetation Control</h3>
+                            <p class="services__description">
+                                Comprehensive aquatic vegetation control services to maintain 
+                                healthy water ecosystems and prevent overgrowth.
+                            </p>
+                            <ul class="services__list">
+                                <li>Seasonal maintenance</li>
+                                <li>Growth monitoring</li>
+                                <li>Treatment planning</li>
+                                <li>Long-term management</li>
+                            </ul>
                         </div>
-                        <h3 class="services__title">Aquatic Vegetation Control</h3>
-                        <p class="services__description">
-                            Comprehensive aquatic vegetation control services to maintain 
-                            healthy water ecosystems and prevent overgrowth.
-                        </p>
-                        <ul class="services__list">
-                            <li>Seasonal maintenance</li>
-                            <li>Growth monitoring</li>
-                            <li>Treatment planning</li>
-                            <li>Long-term management</li>
-                        </ul>
                     </article>
                     
-                    <article class="services__card">
-                        <div class="services__icon">
-                            <i class="ri-settings-3-line"></i>
+                    <article class="services__card services__card--maintenance">
+                        <div class="services__card-bg"></div>
+                        <div class="services__card-content">
+                            <div class="services__icon">
+                                <i class="ri-settings-3-line"></i>
+                            </div>
+                            <h3 class="services__title">Pond Maintenance</h3>
+                            <p class="services__description">
+                                Regular pond maintenance services to keep your water feature 
+                                clean, healthy, and beautiful year-round.
+                            </p>
+                            <ul class="services__list">
+                                <li>Regular inspections</li>
+                                <li>Water quality testing</li>
+                                <li>Equipment maintenance</li>
+                                <li>Emergency services</li>
+                            </ul>
                         </div>
-                        <h3 class="services__title">Pond Maintenance</h3>
-                        <p class="services__description">
-                            Regular pond maintenance services to keep your water feature 
-                            clean, healthy, and beautiful year-round.
-                        </p>
-                        <ul class="services__list">
-                            <li>Regular inspections</li>
-                            <li>Water quality testing</li>
-                            <li>Equipment maintenance</li>
-                            <li>Emergency services</li>
-                        </ul>
                     </article>
                 </div>
             </div>
@@ -251,51 +275,131 @@
         <section class="equipment section" id="equipment">
             <div class="container">
                 <div class="section__header">
-                    <h2 class="section__title">Professional Equipment</h2>
+                    <h2 class="section__title">Truxor T50 Capabilities</h2>
                     <p class="section__subtitle">
-                        State-of-the-art Truxor T50 for superior pond cleanup and lake weed removal
+                        Professional amphibious equipment for comprehensive pond and lake management
                     </p>
                 </div>
                 
-                <div class="equipment__container grid">
-                    <div class="equipment__content">
-                        <h3 class="equipment__title">Truxor T50 - The Ultimate Aquatic Cleanup Machine</h3>
-                        <p class="equipment__description">
-                            Our Truxor T50 is the industry-leading amphibious vehicle designed specifically 
-                            for pond cleanup and lake weed removal. This professional-grade equipment 
-                            provides unmatched efficiency and precision in aquatic vegetation control.
+                <div class="equipment__services grid">
+                    <div class="equipment__service">
+                        <h3 class="equipment__service-title">Cut</h3>
+                        <p class="equipment__service-description">
+                            Hydraulic cutting tools for applications both on land and on the water. 
+                            Cattails, aquatic weeds, grasses, reeds, cane, lotus, lilies! Take it all down 
+                            on land and in the water.
                         </p>
-                        
-                        <div class="equipment__features">
-                            <div class="equipment__feature">
-                                <i class="ri-check-line"></i>
-                                <span>Amphibious operation on land and water</span>
+                        <div class="equipment__service-image">
+                            <img src="images/IMG_9305.jpg" alt="Truxor T50 cutting aquatic vegetation with hydraulic tools" class="equipment__service-img">
+                        </div>
+                    </div>
+                    
+                    <div class="equipment__service">
+                        <h3 class="equipment__service-title">Collect</h3>
+                        <p class="equipment__service-description">
+                            Grapple, baskets, and bucket help make the Truxor the best machine on the water. 
+                            Seamless operation on land and water leveraging interchangeable tools to collect, 
+                            clear, clean and remove vegetation and debris.
+                        </p>
+                        <div class="equipment__service-image">
+                            <img src="images/IMG_9351.jpg" alt="Truxor T50 collecting and removing aquatic debris with grapple and baskets" class="equipment__service-img">
+                        </div>
+                    </div>
+                    
+                    <div class="equipment__service">
+                        <h3 class="equipment__service-title">Dig & Dredge</h3>
+                        <p class="equipment__service-description">
+                            Dredging equipment offers another level of performance and usability, pumping mud, 
+                            muck and sediment without draining. Perfect for precision dredging of ponds, lakes, 
+                            wetlands, fish or duck camps.
+                        </p>
+                        <div class="equipment__service-image">
+                            <img src="images/IMG_9354.jpg" alt="Truxor T50 dredging equipment removing mud and sediment from pond bottom" class="equipment__service-img">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="equipment__aeration">
+                    <h3 class="equipment__aeration-title">Aeration</h3>
+                    <p class="equipment__aeration-description">
+                        Complete water quality management with professional aeration systems for healthy 
+                        pond and lake ecosystems.
+                    </p>
+                    <div class="equipment__aeration-image">
+                        <img src="images/IMG_9712.jpg" alt="Professional pond aeration system improving water quality" class="equipment__aeration-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Treatment Methods -->
+        <section class="treatment section" id="treatment">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Advanced Treatment Methods</h2>
+                    <p class="section__subtitle">
+                        Comprehensive pond and lake management using chemical and biological solutions
+                    </p>
+                </div>
+                
+                <div class="treatment__container">
+                    <!-- Chemical Application Section -->
+                    <div class="treatment__chemical">
+                        <div class="treatment__content">
+                            <div class="treatment__text">
+                                <h3 class="treatment__title">Chemical Application</h3>
+                                <p class="treatment__description">
+                                    We are committed to minimizing chemical usage while maintaining effective control. 
+                                    Our Truxor machines work in harmony with natural ecosystem balance, providing 
+                                    selective herbicide applications, bacteria enhancements, pond dyes, and UV 
+                                    reflection treatments when necessary.
+                                </p>
+                                <p class="treatment__description">
+                                    We collaborate with licensed applicators to ensure safe and effective treatment. 
+                                    For clients preferring alternative methods, we offer comprehensive mechanical 
+                                    and biological treatment options.
+                                </p>
+                                <ul class="treatment__features">
+                                    <li>Selective herbicide applications</li>
+                                    <li>Bacteria enhancements</li>
+                                    <li>Pond dyes and UV treatments</li>
+                                    <li>Licensed applicator collaboration</li>
+                                    <li>Eco-friendly alternatives available</li>
+                                </ul>
                             </div>
-                            <div class="equipment__feature">
-                                <i class="ri-check-line"></i>
-                                <span>Precise cutting and collection systems</span>
-                            </div>
-                            <div class="equipment__feature">
-                                <i class="ri-check-line"></i>
-                                <span>Environmentally friendly operation</span>
-                            </div>
-                            <div class="equipment__feature">
-                                <i class="ri-check-line"></i>
-                                <span>Minimal disturbance to aquatic life</span>
-                            </div>
-                            <div class="equipment__feature">
-                                <i class="ri-check-line"></i>
-                                <span>Versatile attachment options</span>
-                            </div>
-                            <div class="equipment__feature">
-                                <i class="ri-check-line"></i>
-                                <span>Professional-grade reliability</span>
+                            <div class="treatment__image">
+                                <img src="images/IMG_0187.jpg" alt="Professional chemical application for pond treatment and water quality management" class="treatment__img">
                             </div>
                         </div>
                     </div>
                     
-                    <div class="equipment__image">
-                        <img src="images/truxor-t50.jpg" alt="Truxor T50 amphibious pond cleanup machine for professional aquatic vegetation removal" class="equipment__img">
+                    <!-- Biological Section -->
+                    <div class="treatment__biological">
+                        <div class="treatment__content">
+                            <div class="treatment__image">
+                                <img src="images/IMG_0064.webp" alt="Biological pond treatment with fish stocking for natural ecosystem management" class="treatment__img">
+                            </div>
+                            <div class="treatment__text">
+                                <h3 class="treatment__title">Biological Solutions</h3>
+                                <p class="treatment__description">
+                                    Harness the power of nature with our biological treatment options. We offer 
+                                    Grass Carp, Tilapia, and Koi stocking services tailored to your specific 
+                                    lake or pond requirements.
+                                </p>
+                                <p class="treatment__description">
+                                    Our fish stocking services provide natural aquatic ecosystem management, 
+                                    reducing vegetation growth while maintaining water quality and supporting 
+                                    a balanced aquatic environment.
+                                </p>
+                                <ul class="treatment__features">
+                                    <li>Grass Carp for vegetation control</li>
+                                    <li>Tilapia for algae management</li>
+                                    <li>Koi for aesthetic enhancement</li>
+                                    <li>Custom stocking recommendations</li>
+                                    <li>Ecosystem balance maintenance</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -397,14 +501,16 @@
                             <input type="text" name="location" placeholder="Location (City, UT)" class="contact__form-input" required>
                         </div>
                         <div class="contact__form-div">
-                            <select name="service" class="contact__form-input" required>
-                                <option value="">Select Service</option>
-                                <option value="pond-cleanup">Pond Cleanup</option>
-                                <option value="lake-weed-removal">Lake Weed Removal</option>
-                                <option value="aquatic-vegetation-control">Aquatic Vegetation Control</option>
-                                <option value="pond-maintenance">Pond Maintenance</option>
-                                <option value="consultation">Consultation</option>
-                            </select>
+                                                         <select name="service" class="contact__form-input" required>
+                                 <option value="">Select Service</option>
+                                 <option value="pond-cleanup">Pond Cleanup</option>
+                                 <option value="lake-weed-removal">Lake Weed Removal</option>
+                                 <option value="aquatic-vegetation-control">Aquatic Vegetation Control</option>
+                                 <option value="chemical-application">Chemical Application</option>
+                                 <option value="biological-treatment">Biological Treatment</option>
+                                 <option value="pond-maintenance">Pond Maintenance</option>
+                                 <option value="consultation">Consultation</option>
+                             </select>
                         </div>
                         <div class="contact__form-div">
                             <textarea name="message" placeholder="Tell us about your project..." class="contact__form-input" rows="4" required></textarea>
