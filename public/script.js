@@ -1,391 +1,142 @@
-/*=============== ANIMATION SYSTEM ===============*/
-// Intersection Observer for scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+/*=============== SHOW MENU ===============*/
+const navMenu = document.getElementById('nav-menu'),
+      navToggle = document.getElementById('nav-toggle'),
+      navClose = document.getElementById('nav-close')
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animated');
-            
-            // Trigger counter animations
-            if (entry.target.classList.contains('counter')) {
-                animateCounter(entry.target);
-            }
-        }
-    });
-}, observerOptions);
-
-// Observe all elements with animation classes
-document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.animate-on-scroll, .stagger-animation, .text-reveal');
-    animatedElements.forEach(el => observer.observe(el));
-    
-    // Handle stagger animations
-    const staggerContainers = document.querySelectorAll('.stagger-animation');
-    staggerContainers.forEach(container => {
-        const children = container.children;
-        Array.from(children).forEach((child, index) => {
-            child.style.animationDelay = `${index * 0.1}s`;
-        });
-    });
-    
-    // Handle text reveal animations
-    const textRevealElements = document.querySelectorAll('.text-reveal');
-    textRevealElements.forEach(element => {
-        const text = element.textContent;
-        element.innerHTML = '';
-        text.split('').forEach((char, index) => {
-            const span = document.createElement('span');
-            span.textContent = char;
-            span.style.animationDelay = `${index * 0.05}s`;
-            element.appendChild(span);
-        });
-    });
-});
-
-// Counter animation function
-function animateCounter(element) {
-    const target = parseInt(element.getAttribute('data-target'));
-    const duration = 2000;
-    const step = target / (duration / 16);
-    let current = 0;
-    
-    const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
-        }
-        element.textContent = Math.floor(current);
-    }, 16);
+/* Validate if constants exist */
+if(navToggle){
+    navToggle.addEventListener('click', () =>{
+        navMenu.classList.add('show-menu')
+    })
 }
 
-// Parallax effect
-window.addEventListener('scroll', () => {
-    const parallaxElements = document.querySelectorAll('.parallax-bg');
-    parallaxElements.forEach(element => {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-        element.style.transform = `translateY(${rate}px)`;
-    });
-});
+if(navClose){
+    navClose.addEventListener('click', () =>{
+        navMenu.classList.remove('show-menu')
+    })
+}
 
-/*=============== SMOOTH SCROLLING ===============*/
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+/*=============== REMOVE MENU MOBILE ===============*/
+const navLink = document.querySelectorAll('.nav__link')
+
+function linkAction(){
+    const navMenu = document.getElementById('nav-menu')
+    // When we click on each nav__link, we remove the show-menu class
+    navMenu.classList.remove('show-menu')
+}
+navLink.forEach(n => n.addEventListener('click', linkAction))
+
+/*=============== CHANGE BACKGROUND HEADER ===============*/
+function scrollHeader(){
+    const header = document.getElementById('header')
+    // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
+    if(this.scrollY >= 50) header.classList.add('scroll-header'); else header.classList.remove('scroll-header')
+}
+window.addEventListener('scroll', scrollHeader)
+
+/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+const sections = document.querySelectorAll('section[id]')
+
+function scrollActive(){
+    const scrollY = window.pageYOffset
+
+    sections.forEach(current =>{
+        const sectionHeight = current.offsetHeight
+        const sectionTop = current.offsetTop - 50;
+        sectionId = current.getAttribute('id')
+
+        if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
+            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
+        }else{
+            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
         }
-    });
-});
-
-/*=============== TYPING ANIMATION ===============*/
-function initTypingAnimation() {
-    const typingElements = document.querySelectorAll('.typing-animation');
-    typingElements.forEach(element => {
-        const text = element.getAttribute('data-text') || element.textContent;
-        element.textContent = '';
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        }
-        
-        // Start typing when element comes into view
-        const typingObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    typeWriter();
-                    typingObserver.unobserve(entry.target);
-                }
-            });
-        });
-        typingObserver.observe(element);
-    });
+    })
 }
+window.addEventListener('scroll', scrollActive)
 
-/*=============== FAQ ACCORDION ===============*/
-document.addEventListener('DOMContentLoaded', () => {
-    const faqItems = document.querySelectorAll('.faqs__item');
-    faqItems.forEach(item => {
-        const header = item.querySelector('.faqs__header');
-        const content = item.querySelector('.faqs__content');
-        
-        if (header && content) {
-            header.addEventListener('click', () => {
-                const isOpen = item.classList.contains('active');
-                
-                // Close all other items
-                faqItems.forEach(otherItem => {
-                    otherItem.classList.remove('active');
-                });
-                
-                // Toggle current item
-                if (!isOpen) {
-                    item.classList.add('active');
-                }
-            });
-        }
-    });
-});
+/*=============== SCROLL REVEAL ANIMATION ===============*/
+const sr = ScrollReveal({
+    origin: 'top',
+    distance: '60px',
+    duration: 2500,
+    delay: 400,
+    // reset: true
+})
 
-/*=============== FORM FOCUS EFFECTS ===============*/
-document.addEventListener('DOMContentLoaded', () => {
-    const formInputs = document.querySelectorAll('.contact__input, .contact__textarea, .contact__select');
-    const contactContent = document.querySelector('.contact__content');
-    
-    formInputs.forEach(input => {
-        input.addEventListener('focus', () => {
-            contactContent?.classList.add('focused');
-        });
-        
-        input.addEventListener('blur', () => {
-            if (!Array.from(formInputs).some(inp => inp === document.activeElement)) {
-                contactContent?.classList.remove('focused');
-            }
-        });
-    });
-});
-
-/*=============== RIPPLE EFFECT ===============*/
-function createRipple(event) {
-    const button = event.currentTarget;
-    const ripple = document.createElement('span');
-    const rect = button.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
-    
-    ripple.style.width = ripple.style.height = size + 'px';
-    ripple.style.left = x + 'px';
-    ripple.style.top = y + 'px';
-    ripple.classList.add('ripple');
-    
-    button.appendChild(ripple);
-    
-    setTimeout(() => {
-        ripple.remove();
-    }, 600);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('button, .btn');
-    buttons.forEach(button => {
-        button.addEventListener('click', createRipple);
-    });
-});
-
-/*=============== NAVIGATION SCROLL EFFECTS ===============*/
-let lastScrollTop = 0;
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('.nav');
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (currentScrollTop > 100) {
-        nav?.classList.add('scrolled');
-    } else {
-        nav?.classList.remove('scrolled');
-    }
-    
-    if (currentScrollTop > lastScrollTop && currentScrollTop > 200) {
-        nav?.classList.add('nav-hidden');
-    } else {
-        nav?.classList.remove('nav-hidden');
-    }
-    
-    lastScrollTop = currentScrollTop;
-});
-
-/*=============== MOBILE MENU ===============*/
-const navMenu = document.getElementById('nav-menu');
-const navToggle = document.getElementById('nav-toggle');
-const navClose = document.getElementById('nav-close');
-
-if (navToggle) {
-    navToggle.addEventListener('click', () => {
-        navMenu?.classList.add('show-menu');
-    });
-}
-
-if (navClose) {
-    navClose.addEventListener('click', () => {
-        navMenu?.classList.remove('show-menu');
-    });
-}
-
-// Close menu when clicking on links
-const navLinks = document.querySelectorAll('.nav__link');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu?.classList.remove('show-menu');
-    });
-});
-
-/*=============== PAGE LOAD ANIMATIONS ===============*/
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-    
-    // Trigger initial hero animations
-    const heroElements = document.querySelectorAll('.hero__title, .hero__description, .hero__buttons, .hero__image');
-    heroElements.forEach((element, index) => {
-        setTimeout(() => {
-            element.classList.add('animated');
-        }, index * 200);
-    });
-});
-
-/*=============== DYNAMIC CLASS ASSIGNMENT ===============*/
-document.addEventListener('DOMContentLoaded', () => {
-    // Add hover classes to cards
-    const cards = document.querySelectorAll('.services__card, .equipment__card, .partners__card');
-    cards.forEach(card => {
-        card.classList.add('card-hover');
-    });
-    
-    // Add image hover classes
-    const images = document.querySelectorAll('.services__image img, .equipment__img img, .treatment__img img, .about__image img');
-    images.forEach(img => {
-        const wrapper = img.parentElement;
-        if (wrapper) {
-            wrapper.classList.add('image-hover');
-        }
-    });
-    
-    // Add animation classes to various elements
-    const navLinks = document.querySelectorAll('.nav__link');
-    navLinks.forEach(link => {
-        link.classList.add('animate-on-scroll');
-    });
-    
-    const logos = document.querySelectorAll('.nav__logo-img');
-    logos.forEach(logo => {
-        logo.classList.add('animate-float');
-    });
-    
-    const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(button => {
-        button.classList.add('animate-on-scroll');
-    });
-    
-    const socialLinks = document.querySelectorAll('.footer__social-link');
-    socialLinks.forEach(link => {
-        link.classList.add('animate-pulse');
-    });
-});
-
-/*=============== UTILITY FUNCTIONS ===============*/
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Handle window resize
-window.addEventListener('resize', debounce(() => {
-    // Recalculate any layout-dependent animations
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    animatedElements.forEach(el => {
-        if (el.classList.contains('animated')) {
-            el.classList.remove('animated');
-            setTimeout(() => {
-                observer.observe(el);
-            }, 100);
-        }
-    });
-}, 250));
-
-/*=============== PRELOAD CRITICAL ASSETS ===============*/
-function preloadImages() {
-    const criticalImages = [
-        '/images/hero-pond-cleanup.jpg',
-        '/images/truxor-t50.jpg',
-        '/images/about-pond-cleanup.jpg'
-    ];
-    
-    criticalImages.forEach(src => {
-        const img = new Image();
-        img.src = src;
-    });
-}
-
-// Preload images when DOM is ready
-document.addEventListener('DOMContentLoaded', preloadImages);
+sr.reveal(`.home__title, .popular__container, .features__img, .featured__card`)
+sr.reveal(`.home__subtitle`, {delay: 500})
+sr.reveal(`.home__elec`, {delay: 600})
+sr.reveal(`.home__img`, {delay: 700})
+sr.reveal(`.home__car-data`, {delay: 900, interval: 100, origin: 'bottom'})
+sr.reveal(`.home__button`, {delay: 1000, origin: 'bottom'})
+sr.reveal(`.about__group, .offer__data`, {origin: 'left'})
+sr.reveal(`.about__data, .offer__img`, {origin: 'right'})
+sr.reveal(`.features__map`, {delay: 200, origin: 'bottom'})
+sr.reveal(`.features__card`, {interval: 300})
+sr.reveal(`.features__card-2`, {delay: 400})
+sr.reveal(`.features__card-3`, {delay: 500})
+sr.reveal(`.features__card-4`, {delay: 600})
+sr.reveal(`.features__card-5`, {delay: 700})
+sr.reveal(`.features__card-6`, {delay: 800})
+sr.reveal(`.logos__content, .footer__content`, {interval: 100})
 
 /*=============== CONTACT FORM HANDLING ===============*/
-const contactForm = document.querySelector('.contact__form');
+const contactForm = document.querySelector('.contact__form')
 
-if (contactForm) {
+if(contactForm) {
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+        e.preventDefault()
         
         // Get form data
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData);
+        const formData = new FormData(this)
+        const data = Object.fromEntries(formData)
         
         // Basic validation
         if (!data.name || !data.email || !data.phone || !data.service) {
-            showNotification('Please fill in all required fields.', 'error');
-            return;
+            showNotification('Please fill in all required fields.', 'error')
+            return
         }
         
         // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (!emailRegex.test(data.email)) {
-            showNotification('Please enter a valid email address.', 'error');
-            return;
+            showNotification('Please enter a valid email address.', 'error')
+            return
         }
         
         // Phone validation
-        const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+        const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/
         if (!phoneRegex.test(data.phone.replace(/\D/g, ''))) {
-            showNotification('Please enter a valid phone number.', 'error');
-            return;
+            showNotification('Please enter a valid phone number.', 'error')
+            return
         }
         
         // Simulate form submission
-        showNotification('Thank you! We\'ll contact you within 24 hours.', 'success');
+        showNotification('Thank you! We\'ll contact you within 24 hours.', 'success')
         
         // Reset form
-        this.reset();
+        this.reset()
         
         // Here you would typically send the data to your server
-        console.log('Form data:', data);
-    });
+        console.log('Form data:', data)
+    })
 }
 
 /*=============== NOTIFICATION SYSTEM ===============*/
 function showNotification(message, type = 'info') {
     // Remove existing notifications
-    const existingNotifications = document.querySelectorAll('.notification');
-    existingNotifications.forEach(notification => notification.remove());
+    const existingNotifications = document.querySelectorAll('.notification')
+    existingNotifications.forEach(notification => notification.remove())
     
     // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification--${type}`;
+    const notification = document.createElement('div')
+    notification.className = `notification notification--${type}`
     notification.innerHTML = `
         <div class="notification__content">
             <span class="notification__message">${message}</span>
             <button class="notification__close">&times;</button>
         </div>
-    `;
+    `
     
     // Add styles
     notification.style.cssText = `
@@ -400,43 +151,271 @@ function showNotification(message, type = 'info') {
         z-index: 1000;
         transform: translateX(100%);
         transition: transform 0.3s ease;
-        max-width: 300px;
-    `;
+        max-width: 400px;
+    `
     
     // Add to page
-    document.body.appendChild(notification);
+    document.body.appendChild(notification)
     
     // Animate in
     setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
+        notification.style.transform = 'translateX(0)'
+    }, 100)
     
     // Close button functionality
-    const closeBtn = notification.querySelector('.notification__close');
+    const closeBtn = notification.querySelector('.notification__close')
     closeBtn.addEventListener('click', () => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            notification.remove();
-        }, 300);
-    });
+        notification.style.transform = 'translateX(100%)'
+        setTimeout(() => notification.remove(), 300)
+    })
     
     // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentNode) {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                notification.remove();
-            }, 300);
+            notification.style.transform = 'translateX(100%)'
+            setTimeout(() => notification.remove(), 300)
         }
-    }, 5000);
+    }, 5000)
 }
 
-/*=============== INITIALIZE ALL ANIMATIONS ===============*/
-document.addEventListener('DOMContentLoaded', () => {
-    initTypingAnimation();
+/*=============== SMOOTH SCROLLING FOR ANCHOR LINKS ===============*/
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault()
+        
+        const target = document.querySelector(this.getAttribute('href'))
+        if (target) {
+            const headerHeight = document.querySelector('.header').offsetHeight
+            const targetPosition = target.offsetTop - headerHeight
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            })
+        }
+    })
+})
+
+/*=============== LAZY LOADING FOR IMAGES ===============*/
+const images = document.querySelectorAll('img[data-src]')
+
+const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target
+            img.src = img.dataset.src
+            img.classList.remove('lazy')
+            imageObserver.unobserve(img)
+        }
+    })
+})
+
+images.forEach(img => imageObserver.observe(img))
+
+/*=============== COUNTER ANIMATION ===============*/
+function animateCounters() {
+    const counters = document.querySelectorAll('.home__stat h3')
     
-    // Add loading spinner to body initially
-    if (!document.body.classList.contains('loaded')) {
-        document.body.style.overflow = 'hidden';
+    counters.forEach(counter => {
+        const target = parseInt(counter.textContent.replace(/\D/g, ''))
+        const increment = target / 100
+        let current = 0
+        
+        const updateCounter = () => {
+            if (current < target) {
+                current += increment
+                counter.textContent = Math.ceil(current) + '+'
+                requestAnimationFrame(updateCounter)
+            } else {
+                counter.textContent = target + '+'
+            }
+        }
+        
+        updateCounter()
+    })
+}
+
+// Trigger counter animation when home section is visible
+const homeSection = document.querySelector('.home')
+if (homeSection) {
+    const homeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters()
+                homeObserver.unobserve(entry.target)
+            }
+        })
+    })
+    
+    homeObserver.observe(homeSection)
+}
+
+/*=============== EQUIPMENT FEATURES HIGHLIGHT ===============*/
+const equipmentFeatures = document.querySelectorAll('.equipment__feature')
+
+equipmentFeatures.forEach(feature => {
+    feature.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateX(10px)'
+        this.style.color = 'var(--primary-color)'
+    })
+    
+    feature.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateX(0)'
+        this.style.color = 'var(--dark-gray)'
+    })
+})
+
+/*=============== SERVICES CARDS INTERACTION ===============*/
+const serviceCards = document.querySelectorAll('.services__card')
+
+serviceCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) scale(1.02)'
+    })
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)'
+    })
+})
+
+/*=============== HEADER SCROLL EFFECT ===============*/
+let lastScrollTop = 0
+const header = document.querySelector('.header')
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+        // Scrolling down
+        header.style.transform = 'translateY(-100%)'
+    } else {
+        // Scrolling up
+        header.style.transform = 'translateY(0)'
     }
-});
+    
+    lastScrollTop = scrollTop
+})
+
+/*=============== FORM INPUT FOCUS EFFECTS ===============*/
+const formInputs = document.querySelectorAll('.contact__form-input')
+
+formInputs.forEach(input => {
+    input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'scale(1.02)'
+    })
+    
+    input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'scale(1)'
+    })
+})
+
+/*=============== PAGE LOAD ANIMATION ===============*/
+window.addEventListener('load', () => {
+    document.body.style.opacity = '0'
+    document.body.style.transition = 'opacity 0.5s ease'
+    
+    setTimeout(() => {
+        document.body.style.opacity = '1'
+    }, 100)
+})
+
+/*=============== SEO ENHANCEMENTS ===============*/
+// Add structured data for better SEO
+const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Pond Cleanup Pro",
+    "description": "Professional pond cleanup and lake weed removal services using Truxor T50 equipment",
+    "url": "https://pondcleanup.com",
+    "telephone": "+1-801-555-0123",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Utah",
+        "addressRegion": "UT",
+        "addressCountry": "US"
+    },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "40.7608",
+        "longitude": "-111.8910"
+    },
+    "serviceArea": {
+        "@type": "State",
+        "name": "Utah"
+    },
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Pond and Lake Services",
+        "itemListElement": [
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Pond Cleanup"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Lake Weed Removal"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Aquatic Vegetation Control"
+                }
+            }
+        ]
+    }
+}
+
+// Add structured data to page
+const script = document.createElement('script')
+script.type = 'application/ld+json'
+script.textContent = JSON.stringify(structuredData)
+document.head.appendChild(script)
+
+/*=============== PERFORMANCE OPTIMIZATION ===============*/
+// Preload critical resources
+const criticalResources = [
+    'images/hero-pond-cleanup.jpg',
+    'images/truxor-t50.jpg'
+]
+
+criticalResources.forEach(resource => {
+    const link = document.createElement('link')
+    link.rel = 'preload'
+    link.as = 'image'
+    link.href = resource
+    document.head.appendChild(link)
+})
+
+/*=============== ACCESSIBILITY ENHANCEMENTS ===============*/
+// Add keyboard navigation support
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const navMenu = document.getElementById('nav-menu')
+        if (navMenu.classList.contains('show-menu')) {
+            navMenu.classList.remove('show-menu')
+        }
+    }
+})
+
+// Add focus indicators for better accessibility
+const focusableElements = document.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])')
+
+focusableElements.forEach(element => {
+    element.addEventListener('focus', function() {
+        this.style.outline = '2px solid var(--primary-color)'
+        this.style.outlineOffset = '2px'
+    })
+    
+    element.addEventListener('blur', function() {
+        this.style.outline = 'none'
+    })
+})
+
+console.log('Pond Cleanup website loaded successfully! 🚀')
