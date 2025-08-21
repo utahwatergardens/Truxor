@@ -23,14 +23,14 @@ const ModelViewer = dynamic(() => import("@/components/Simple3DViewer"), { ssr: 
 // Contact form with CRM integration
 const ContactForm = dynamic(() => import("@/components/ContactForm"), { ssr: false });
 
-// Enhanced video player for 3D renders
+// Enhanced video player for equipment demonstrations
 const VideoPlayer = dynamic(() => import("@/components/VideoPlayer"), { ssr: false });
 
 // --- Editable content for Pond Cleanup business ---
 const BRAND = {
   name: "PondCleanup.com",
   tagline: "Professional pond cleanup and lake weed removal services",
-  heroVideo: "/videos/equipment-3d-render.mp4", // Your new 3D render
+  heroVideo: "/videos/equipment-3d-render.mp4", // Professional equipment demonstration
   poster: "/images/New Images/Truxor_Cutting-Collecting_1_web.jpg",
   brochure: "/downloads/pond-cleanup-services-brochure.html",
 };
@@ -223,14 +223,14 @@ export default function PondCleanupLanding() {
         <div className="pointer-events-none absolute inset-0 bg-black/40" />
       </section>
 
-      {/* 3D EQUIPMENT RENDER SECTION */}
+      {/* EQUIPMENT VIDEO DEMONSTRATION SECTION */}
       <section className="mx-auto max-w-7xl px-6 py-16 water-gradient">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-4 gradient-text">
-            See Our Equipment in Action
+            Professional Equipment in Action
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Watch our professional pond cleanup equipment demonstrate its capabilities in this detailed 3D render
+            Watch our specialized amphibious equipment demonstrate real pond cleanup capabilities and precision operations
           </p>
         </div>
         
@@ -240,8 +240,8 @@ export default function PondCleanupLanding() {
             <VideoPlayer
               src="/videos/equipment-3d-render.mp4"
               poster="/images/New Images/Truxor_Cutting-Collecting_1_web.jpg"
-              title="Professional Equipment 3D Render"
-              description="Amphibious pond cleanup equipment with cutting and collection capabilities"
+              title="Professional Equipment Demonstration"
+              description="Watch our machine tackle real pond cleanup challenges with precision and efficiency"
               autoPlay={true}
               loop={true}
               muted={true}

@@ -116,7 +116,7 @@ export default function VideoPlayer({
         <CardTitle className="flex items-center justify-between">
           <span>{title}</span>
           <div className="flex items-center gap-2">
-            <Badge variant="secondary">3D Render</Badge>
+            <Badge variant="secondary">Equipment Demo</Badge>
             {controls && (
               <div className="flex gap-1">
                 <Button
