@@ -23,11 +23,14 @@ const ModelViewer = dynamic(() => import("@/components/GLBViewer"), { ssr: false
 // Contact form with CRM integration
 const ContactForm = dynamic(() => import("@/components/ContactForm"), { ssr: false });
 
+// Enhanced video player for 3D renders
+const VideoPlayer = dynamic(() => import("@/components/VideoPlayer"), { ssr: false });
+
 // --- Editable content for Pond Cleanup business ---
 const BRAND = {
   name: "PondCleanup.com",
   tagline: "Professional pond cleanup and lake weed removal services",
-  heroVideo: "/hero/pond-cleanup-hero.mp4", // provide your own mp4/webm
+  heroVideo: "/videos/equipment-3d-render.mp4", // Your new 3D render
   poster: "/images/New Images/Truxor_Cutting-Collecting_1_web.jpg",
   brochure: "/downloads/pond-cleanup-services.pdf",
 };
@@ -153,6 +156,31 @@ export default function PondCleanupLanding() {
           </div>
         </div>
         <div className="pointer-events-none absolute inset-0 bg-black/40" />
+      </section>
+
+      {/* 3D EQUIPMENT RENDER SECTION */}
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tight mb-4">
+            See Our Equipment in Action
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Watch our professional pond cleanup equipment demonstrate its capabilities in this detailed 3D render
+          </p>
+        </div>
+        
+        <div className="max-w-4xl mx-auto">
+          <VideoPlayer
+            src="/videos/equipment-3d-render.mp4"
+            poster="/images/New Images/Truxor_Cutting-Collecting_1_web.jpg"
+            title="Professional Equipment 3D Render"
+            description="Amphibious pond cleanup equipment with cutting and collection capabilities"
+            autoPlay={true}
+            loop={true}
+            muted={true}
+            controls={true}
+          />
+        </div>
       </section>
 
       {/* STICKY SERVICES BAR */}
