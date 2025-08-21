@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Toggle } from "@/components/ui/toggle";
-import { Check, Fuel, Gauge, Waves, Wrench, Shield, Download, Hand, Leaf, Ruler, ShipWheel, Zap } from "lucide-react";
+import { Check, Fuel, Gauge, Waves, Wrench, Shield, Download, Hand, Leaf, Ruler, ShipWheel, Zap, Trees, Heart } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
@@ -47,6 +47,20 @@ const JOB_TYPES = [
   { icon: <Shield className="h-5 w-5" />, name: "Emergency Response", desc: "Rapid response for flooding, debris removal, and urgent situations." },
 ];
 
+const CUT_CAPABILITIES = [
+  { icon: <Leaf className="h-5 w-5" />, name: "Underwater Weeds", desc: "Cut and remove submerged vegetation that chokes ponds and lakes." },
+  { icon: <Waves className="h-5 w-5" />, name: "Waterlogged Retaining Basins", desc: "Clear overgrown basins and restore proper water flow." },
+  { icon: <Zap className="h-5 w-5" />, name: "Dense Reed Beds", desc: "Cut through thick reeds and cattails that block access." },
+  { icon: <Shield className="h-5 w-5" />, name: "Invasive Species", desc: "Remove aggressive plants that threaten native ecosystems." },
+];
+
+const PULL_CAPABILITIES = [
+  { icon: <Trees className="h-5 w-5" />, name: "Picking Up Trees", desc: "Remove fallen trees and large debris from water bodies." },
+  { icon: <Leaf className="h-5 w-5" />, name: "Pulling Out Cattails", desc: "Extract root systems and prevent regrowth." },
+  { icon: <Heart className="h-5 w-5" />, name: "Rescuing Kittens", desc: "Emergency animal rescue from water and difficult locations." },
+  { icon: <Hand className="h-5 w-5" />, name: "Debris Removal", desc: "Pull out large objects and obstacles from ponds and lakes." },
+];
+
 const SITUATIONS = [
   { icon: <Waves className="h-5 w-5" />, title: "Overgrown Ponds", desc: "Restore ponds overrun with weeds and vegetation." },
   { icon: <Fuel className="h-5 w-5" />, title: "Sediment Buildup", desc: "Remove years of accumulated muck and debris." },
@@ -56,7 +70,7 @@ const SITUATIONS = [
 
 const FAQ = [
   { q: "How much does pond cleanup cost?", a: "Pond cleanup costs vary based on size, condition, and specific services needed. We offer free consultations and quotes. Typical projects range from $500-$5,000 depending on pond size and complexity." },
-  { q: "What types of jobs do you handle?", a: "We handle excavation, vegetation removal, shoreline restoration, emergency response, and preventive maintenance. From small residential ponds to large commercial lakes, we have the equipment and expertise." },
+  { q: "What types of jobs do you handle?", a: "We handle excavation, vegetation removal, shoreline restoration, emergency response, cut operations (underwater weeds, reed beds), and pull operations (trees, cattails, debris removal). From small residential ponds to large commercial lakes, we have the equipment and expertise." },
   { q: "Do you offer maintenance plans?", a: "Yes! We offer seasonal maintenance plans to keep your pond healthy year-round. This includes regular inspections, vegetation control, and water quality monitoring to prevent future problems." },
   { q: "How quickly can you respond to emergencies?", a: "We provide rapid response for emergency situations like flooding, storm damage, or urgent cleanup needs. Contact us immediately for emergency services." },
 ];
@@ -182,6 +196,66 @@ export default function PondCleanupLanding() {
                   </div>
                 </div>
               ))}
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* CUT & PULL CAPABILITIES */}
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Cut & Pull Capabilities</h2>
+          <p className="text-lg text-muted-foreground">Specialized equipment for precise cutting and powerful pulling operations</p>
+        </div>
+        
+        <div className="grid gap-8 md:grid-cols-2">
+          {/* CUT SECTION */}
+          <Card className="overflow-hidden">
+            <CardHeader className="bg-green-50">
+              <CardTitle className="flex items-center gap-2">
+                <Zap className="h-6 w-6 text-green-600" />
+                Cut Operations
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="grid gap-4">
+                {CUT_CAPABILITIES.map((capability) => (
+                  <div key={capability.name} className="flex gap-3 rounded-xl border p-4 hover:shadow-md transition-shadow">
+                    <div className="flex-shrink-0">
+                      {capability.icon}
+                    </div>
+                    <div>
+                      <div className="font-medium">{capability.name}</div>
+                      <div className="text-sm text-muted-foreground">{capability.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* PULL SECTION */}
+          <Card className="overflow-hidden">
+            <CardHeader className="bg-blue-50">
+              <CardTitle className="flex items-center gap-2">
+                <Hand className="h-6 w-6 text-blue-600" />
+                Pull Operations
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="grid gap-4">
+                {PULL_CAPABILITIES.map((capability) => (
+                  <div key={capability.name} className="flex gap-3 rounded-xl border p-4 hover:shadow-md transition-shadow">
+                    <div className="flex-shrink-0">
+                      {capability.icon}
+                    </div>
+                    <div>
+                      <div className="font-medium">{capability.name}</div>
+                      <div className="text-sm text-muted-foreground">{capability.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -493,8 +567,8 @@ function ServicesGrid() {
     { name: "Vegetation Control", desc: "Clear invasive weeds, reeds, and overgrown vegetation" },
     { name: "Shoreline Restoration", desc: "Clean and restore eroded or overgrown shorelines" },
     { name: "Emergency Response", desc: "Rapid response for flooding, debris removal, and urgent situations" },
-    { name: "Preventive Maintenance", desc: "Regular maintenance programs to keep water features healthy" },
-    { name: "Habitat Restoration", desc: "Restore natural habitats for fish and wildlife" },
+    { name: "Cut Operations", desc: "Precise cutting of underwater weeds, reed beds, and retaining basins" },
+    { name: "Pull Operations", desc: "Powerful pulling for trees, cattails, debris, and emergency rescues" },
   ];
   return (
     <div className="grid gap-3 md:grid-cols-2">
