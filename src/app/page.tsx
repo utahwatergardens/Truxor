@@ -1778,21 +1778,37 @@ function ServiceAreas() {
       
       <div className="mt-8 p-6 rounded-xl border glass-effect bg-gradient-to-r from-blue-50 to-cyan-50">
         <div className="text-center">
-          <h4 className="font-semibold mb-2 gradient-text">Outside Our Service Area?</h4>
+          <h4 className="font-semibold mb-2 gradient-text">Find Services in Your City</h4>
           <p className="text-sm text-muted-foreground mb-4">
-            Don't see your location listed? We're always expanding our service areas and may be able to help with your project. 
-            Our specialized amphibious equipment can handle unique challenges that other services can't.
+            Browse our comprehensive list of 50+ cities across Utah, Idaho, Wyoming, and Arizona. 
+            Each city page includes local service details, contact information, and nearby coverage areas.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-            <div className="text-xs text-muted-foreground">
-              <strong>Give us a call anyway!</strong> We'll discuss your specific needs and may be able to accommodate your project.
-            </div>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
             <Button className="gradient-bg hover-lift shadow-glow" asChild>
-              <a href="#contact-form">
-                <Phone className="h-4 w-4 mr-2" />
-                Contact Us
+              <a href="/cities">
+                <MapPin className="h-4 w-4 mr-2" />
+                View All Cities
               </a>
             </Button>
+          </div>
+          
+          <div className="border-t pt-4">
+            <h5 className="font-semibold mb-2 gradient-text">Outside Our Service Area?</h5>
+            <p className="text-sm text-muted-foreground mb-4">
+              Don't see your location listed? We're always expanding our service areas and may be able to help with your project. 
+              Our specialized amphibious equipment can handle unique challenges that other services can't.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+              <div className="text-xs text-muted-foreground">
+                <strong>Give us a call anyway!</strong> We'll discuss your specific needs and may be able to accommodate your project.
+              </div>
+              <Button className="gradient-bg hover-lift shadow-glow" asChild>
+                <a href="#contact-form">
+                  <Phone className="h-4 w-4 mr-2" />
+                  Contact Us
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
