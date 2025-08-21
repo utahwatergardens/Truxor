@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Toggle } from "@/components/ui/toggle";
-import { Check, Fuel, Gauge, Waves, Wrench, Shield, Download, Hand, Leaf, Ruler, ShipWheel, Zap, Trees, Heart } from "lucide-react";
+import { Check, Fuel, Gauge, Waves, Wrench, Shield, Download, Hand, Leaf, Ruler, ShipWheel, Zap, Trees } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
@@ -57,7 +57,6 @@ const CUT_CAPABILITIES = [
 const PULL_CAPABILITIES = [
   { icon: <Trees className="h-5 w-5" />, name: "Picking Up Trees", desc: "Remove fallen trees and large debris from water bodies." },
   { icon: <Leaf className="h-5 w-5" />, name: "Pulling Out Cattails", desc: "Extract root systems and prevent regrowth." },
-  { icon: <Heart className="h-5 w-5" />, name: "Rescuing Kittens", desc: "Emergency animal rescue from water and difficult locations." },
   { icon: <Hand className="h-5 w-5" />, name: "Debris Removal", desc: "Pull out large objects and obstacles from ponds and lakes." },
 ];
 
