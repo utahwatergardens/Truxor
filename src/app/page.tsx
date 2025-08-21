@@ -17,8 +17,8 @@ import Image from "next/image";
 
 // Optional 3D viewer placeholder (swap with react-three-fiber or model-viewer as needed)
 
-// 3D viewer with attachment controls
-const ModelViewer = dynamic(() => import("@/components/ModelViewer"), { ssr: false, loading: () => <div className="h-96 w-full animate-pulse rounded-2xl bg-muted" /> });
+// 3D viewer with GLB support and attachment controls
+const ModelViewer = dynamic(() => import("@/components/GLBViewer"), { ssr: false, loading: () => <div className="h-96 w-full animate-pulse rounded-2xl bg-muted" /> });
 
 // Contact form with CRM integration
 const ContactForm = dynamic(() => import("@/components/ContactForm"), { ssr: false });
