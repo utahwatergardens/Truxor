@@ -1,150 +1,166 @@
 # PondCleanup.com - Professional Pond & Lake Cleanup Services
 
-A modern, SEO-optimized website for professional pond cleanup and lake weed removal services using Truxor T50 equipment. Built with HTML5, CSS3, and JavaScript for optimal performance and user experience.
-
-## 🎯 Target Keywords
-
-### Primary Keywords
-- **pond cleanup**
-- **lake cleanup**
-- **aquatic vegetation removal**
-- **pond weed removal**
-- **lake weed control**
-- **aquatic weed removal**
-
-### Long-tail Keywords
-- **professional pond cleanup services**
-- **lake maintenance services**
-- **aquatic vegetation control**
-- **pond weed control near me**
-- **lake cleanup equipment rental**
-- **Truxor pond cleanup**
-
-### Local SEO Keywords
-- **pond cleanup Utah**
-- **lake cleanup Utah**
-- **aquatic services Utah**
-- **pond maintenance Utah**
+A modern, SEO-optimized Next.js website for professional pond cleanup and lake weed removal services using Truxor T50 equipment. Built with React, TypeScript, and Tailwind CSS for optimal performance and user experience.
 
 ## 🚀 Features
+
+### Modern Tech Stack
+- **Next.js 14** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Smooth animations
+- **Radix UI** - Accessible component primitives
+- **Recharts** - Interactive data visualization
+- **Lucide React** - Beautiful icons
 
 ### SEO Optimized
 - ✅ Semantic HTML5 structure
 - ✅ Meta tags and Open Graph optimization
 - ✅ Structured data (Schema.org)
 - ✅ Local business schema markup
-- ✅ Optimized images with alt text
-- ✅ Fast loading times
+- ✅ Optimized images with Next.js Image
+- ✅ Fast loading times with SSR/SSG
 - ✅ Mobile-first responsive design
 
 ### User Experience
 - ✅ Modern, professional design
-- ✅ Smooth scrolling navigation
-- ✅ Interactive contact form
+- ✅ Interactive components (Tabs, Accordion, Forms)
+- ✅ Smooth animations and transitions
 - ✅ Mobile-responsive layout
 - ✅ Accessibility features
-- ✅ Loading animations
 - ✅ Form validation
+- ✅ Unit conversion (Metric/Imperial)
 
-### Technical Features
-- ✅ CSS Grid and Flexbox layouts
-- ✅ CSS custom properties (variables)
-- ✅ Intersection Observer API
-- ✅ Lazy loading images
-- ✅ Smooth animations
-- ✅ Cross-browser compatibility
+### Interactive Features
+- ✅ ROI Calculator with charts
+- ✅ Equipment specifications with unit toggle
+- ✅ Interactive contact forms
+- ✅ FAQ accordion
+- ✅ 3D model viewer placeholder
+- ✅ Responsive data visualization
+
+## 🛠️ Setup Instructions
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+```
+
+### Development
+```bash
+# Start development server
+npm run dev
+
+# Open http://localhost:3000
+```
+
+### Deployment
+```bash
+# Build the project
+npm run build
+
+# Deploy to Vercel
+npm run deploy
+```
 
 ## 📁 Project Structure
 
 ```
-pondcleanup-website/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styles
-├── script.js           # JavaScript functionality
-├── images/             # Image assets
-│   ├── hero-pond-cleanup.jpg
-│   ├── truxor-t50.jpg
-│   ├── about-pond-cleanup.jpg
-│   └── favicon.ico
-└── README.md           # Project documentation
+src/
+├── app/                    # Next.js App Router
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Homepage
+├── components/            # React components
+│   ├── ui/               # Reusable UI components
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── tabs.tsx
+│   │   └── ...
+│   └── ModelViewerPlaceholder.tsx
+└── lib/                  # Utility functions
+    └── utils.ts
 ```
-
-## 🛠️ Setup Instructions
-
-### 1. Local Development
-```bash
-# Clone or download the project files
-# Open index.html in your web browser
-# Or use a local server for development
-```
-
-### 2. Using a Local Server (Recommended)
-```bash
-# Using Python 3
-python -m http.server 8000
-
-# Using Node.js (if you have http-server installed)
-npx http-server
-
-# Using PHP
-php -S localhost:8000
-```
-
-### 3. Deployment
-1. Upload all files to your web hosting provider
-2. Ensure the domain points to `pondcleanup.com`
-3. Set up SSL certificate for HTTPS
-4. Configure web server for optimal performance
 
 ## 🎨 Design System
 
-### Color Palette
-- **Primary Blue**: `#1e40af` - Main brand color
-- **Secondary Green**: `#059669` - Success/accent color
-- **Accent Blue**: `#0ea5e9` - Highlight color
-- **Neutral Grays**: Various shades for text and backgrounds
+### Colors
+- **Primary**: Blue (#1e40af)
+- **Secondary**: Green (#059669)
+- **Accent**: Light Blue (#0ea5e9)
+- **Neutral**: Various grays
 
 ### Typography
-- **Font Family**: Inter (Google Fonts)
-- **Font Weights**: 300, 400, 500, 600, 700
-- **Responsive sizing**: Scales from mobile to desktop
+- **Font**: Inter (Google Fonts)
+- **Weights**: 300, 400, 500, 600, 700
+- **Responsive**: Scales from mobile to desktop
 
 ### Components
-- **Buttons**: Gradient backgrounds with hover effects
-- **Cards**: Clean, modern design with subtle shadows
+- **Buttons**: Multiple variants and sizes
+- **Cards**: Clean, modern design
 - **Forms**: Professional styling with validation
-- **Navigation**: Fixed header with smooth scrolling
+- **Tabs**: Interactive content organization
+- **Accordion**: Collapsible FAQ sections
 
-## 📱 Responsive Breakpoints
-
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
+## 📱 Responsive Design
+- Mobile-first approach
+- Breakpoints: Mobile (<768px), Tablet (768-1024px), Desktop (>1024px)
+- Touch-friendly interactions
 
 ## 🔧 Customization
 
-### Colors
-Update CSS variables in `styles.css`:
+### Content
+Update the constants in `src/app/page.tsx`:
+```typescript
+const BRAND = {
+  name: "PondCleanup.com",
+  tagline: "Professional pond cleanup and lake weed removal services",
+  // ... other brand settings
+};
+```
+
+### Styling
+Modify CSS variables in `src/app/globals.css`:
 ```css
 :root {
-    --primary-color: #1e40af;
-    --secondary-color: #059669;
-    --accent-color: #0ea5e9;
-    /* ... other variables */
+  --primary: 221.2 83.2% 53.3%;
+  --secondary: 142.1 76.2% 36.3%;
+  /* ... other variables */
 }
 ```
 
-### Content
-- Update business information in `index.html`
-- Replace placeholder images with actual photos
-- Modify contact information and service details
-
 ### SEO
-- Update meta descriptions and keywords
-- Modify structured data for your business
-- Add Google Analytics tracking code
+Update metadata in `src/app/layout.tsx`:
+```typescript
+export const metadata: Metadata = {
+  title: 'Your Title',
+  description: 'Your description',
+  // ... other meta tags
+}
+```
 
-## 📊 SEO Checklist
+## 📊 Performance Features
+- **Code Splitting** - Automatic with Next.js
+- **Image Optimization** - Next.js Image component
+- **Lazy Loading** - Dynamic imports for heavy components
+- **Bundle Analysis** - Built-in with Next.js
+- **Caching** - Automatic static optimization
+
+## 🔍 SEO Checklist
 
 ### On-Page SEO
 - [x] Optimized title tags
@@ -159,8 +175,8 @@ Update CSS variables in `styles.css`:
 ### Technical SEO
 - [x] Semantic HTML structure
 - [x] Clean URL structure
-- [x] XML sitemap (to be generated)
-- [x] Robots.txt (to be created)
+- [x] XML sitemap (Next.js auto-generates)
+- [x] Robots.txt (Next.js auto-generates)
 - [x] SSL certificate (HTTPS)
 - [x] Page speed optimization
 
@@ -169,35 +185,29 @@ Update CSS variables in `styles.css`:
 - [x] Location-specific content
 - [x] Service area information
 - [x] Contact information
-- [x] Google My Business optimization (external)
 
-## 📈 Performance Optimization
+## 📈 Analytics & Tracking
 
-### Images
-- Optimize all images for web
-- Use WebP format when possible
-- Implement lazy loading
-- Provide appropriate alt text
+### Recommended Setup
+1. **Google Analytics 4** - Add tracking code to layout
+2. **Google Search Console** - Submit sitemap
+3. **Google My Business** - Create and optimize listing
+4. **Hotjar** - User behavior analysis
 
-### Code
-- Minify CSS and JavaScript for production
-- Enable GZIP compression
-- Use browser caching
-- Optimize critical rendering path
+## 🚀 Next Steps
 
-## 🔍 Analytics & Tracking
+### Immediate Actions
+1. **Content** - Add real testimonials and photos
+2. **Forms** - Connect contact forms to backend
+3. **Analytics** - Add Google Analytics
+4. **Testing** - Test all interactive features
 
-### Recommended Tools
-- **Google Analytics 4**: Track website traffic
-- **Google Search Console**: Monitor search performance
-- **Google My Business**: Local SEO management
-- **Hotjar**: User behavior analysis
-
-### Setup Instructions
-1. Add Google Analytics tracking code to `<head>`
-2. Submit sitemap to Google Search Console
-3. Verify ownership of Google My Business
-4. Set up conversion tracking
+### Future Enhancements
+1. **Blog** - Add content marketing section
+2. **Booking** - Online appointment scheduling
+3. **3D Models** - Real 3D equipment viewer
+4. **Chat** - Live chat integration
+5. **Reviews** - Customer review system
 
 ## 📞 Contact Information
 
@@ -206,26 +216,6 @@ Update CSS variables in `styles.css`:
 - **Email**: info@pondcleanup.com
 - **Service Area**: Utah Statewide
 - **Equipment**: Truxor T50
-
-## 🚀 Next Steps
-
-### Immediate Actions
-1. **Domain Registration**: Secure `pondcleanup.com`
-2. **Hosting Setup**: Choose reliable web hosting
-3. **SSL Certificate**: Enable HTTPS
-4. **Content Creation**: Add real photos and testimonials
-
-### SEO Strategy
-1. **Google My Business**: Create and optimize listing
-2. **Local Citations**: Submit to directories
-3. **Content Marketing**: Blog posts about pond maintenance
-4. **Link Building**: Partner with local businesses
-
-### Marketing
-1. **Social Media**: Create business profiles
-2. **PPC Advertising**: Google Ads for immediate leads
-3. **Email Marketing**: Newsletter for existing customers
-4. **Referral Program**: Incentivize customer referrals
 
 ## 📄 License
 
@@ -237,4 +227,4 @@ For technical support or customization requests, contact the development team.
 
 ---
 
-**Built with ❤️ for professional pond cleanup services**
+**Built with ❤️ using Next.js, React, and modern web technologies**

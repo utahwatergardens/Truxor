@@ -2,12 +2,41 @@
   "name": "pondcleanup",
   "version": "1.0.0",
   "description": "Professional pond cleanup and lake weed removal services website",
-  "main": "index.html",
+  "private": true,
   "scripts": {
-    "dev": "npx serve .",
-    "build": "echo 'Static site - no build required'",
-    "start": "npx serve .",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "framer-motion": "^10.16.0",
+    "lucide-react": "^0.292.0",
+    "recharts": "^2.8.0",
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-toggle": "^1.0.3",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.52.0",
+    "eslint-config-next": "^14.0.0",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.2.2"
   },
   "keywords": [
     "pond-cleanup",
@@ -15,19 +44,18 @@
     "aquatic-vegetation-control",
     "truxor",
     "utah-pond-services",
-    "seo-optimized"
+    "seo-optimized",
+    "nextjs",
+    "react"
   ],
   "author": "Pond Cleanup Pro",
   "license": "MIT",
-  "devDependencies": {
-    "serve": "^14.2.1"
-  },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DeepthinkAIapp/pondcleanup.git"
+    "url": "https://github.com/utahwatergardens/Truxor.git"
   },
   "homepage": "https://pondcleanup.com"
 }
