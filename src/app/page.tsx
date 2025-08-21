@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Toggle } from "@/components/ui/toggle";
-import { Check, Fuel, Gauge, Waves, Wrench, Shield, Download, Hand, Leaf, Ruler, ShipWheel, Zap, Trees, Phone, MessageCircle, Tractor, Droplets, Wheat, TreePine, Building2, Factory, Scissors, Settings } from "lucide-react";
+import { Check, Fuel, Gauge, Waves, Wrench, Shield, Download, Hand, Leaf, Ruler, ShipWheel, Zap, Trees, Phone, MessageCircle, Tractor, Droplets, Wheat, TreePine, Building2, Factory, Scissors, Settings, MapPin, Clock, Grip } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
@@ -32,7 +32,7 @@ const BRAND = {
   tagline: "Professional pond cleanup and lake weed removal services",
   heroVideo: "/videos/equipment-3d-render.mp4", // Your new 3D render
   poster: "/images/New Images/Truxor_Cutting-Collecting_1_web.jpg",
-  brochure: "/downloads/pond-cleanup-services.pdf",
+  brochure: "/downloads/pond-cleanup-services-brochure.html",
 };
 
 const SERVICES = {
@@ -54,23 +54,83 @@ const JOB_TYPES = [
 ];
 
 const CUT_CAPABILITIES = [
-  { icon: <Leaf className="h-5 w-5" />, name: "Underwater Weeds", desc: "Cut and remove submerged vegetation that chokes ponds and lakes." },
-  { icon: <Waves className="h-5 w-5" />, name: "Waterlogged Retaining Basins", desc: "Clear overgrown basins and restore proper water flow." },
-  { icon: <Zap className="h-5 w-5" />, name: "Dense Reed Beds", desc: "Cut through thick reeds and cattails that block access." },
-  { icon: <Shield className="h-5 w-5" />, name: "Invasive Species", desc: "Remove aggressive plants that threaten native ecosystems." },
+  { 
+    icon: <Scissors className="h-5 w-5" />, 
+    name: "Doro Cutter D20", 
+    desc: "Hydraulic cutter for aquatic vegetation. Depth: ~1m (3.28ft), Width: ~4m (13.1ft). Perfect for standard cutting operations." 
+  },
+  { 
+    icon: <Scissors className="h-5 w-5" />, 
+    name: "Doro Cutter D30", 
+    desc: "Enhanced cutting depth of ~1.4m (4.6ft) with same ~4m width. Ideal for deeper vegetation control." 
+  },
+  { 
+    icon: <Scissors className="h-5 w-5" />, 
+    name: "Doro Cutter D40", 
+    desc: "Telescopic deep-cut tool: 0.2-2.1m (0.65-6.88ft) depth, up to 4m width. Hydraulic drift for precision." 
+  },
+  { 
+    icon: <Scissors className="h-5 w-5" />, 
+    name: "ESM Series (20-60)", 
+    desc: "Double-action Busati knives for wetlands. ESM20: ~0.5m, ESM30: ~0.3m, ESM50: ~0.8m with collection." 
+  },
 ];
 
 const PULL_CAPABILITIES = [
-  { icon: <Trees className="h-5 w-5" />, name: "Picking Up Trees", desc: "Remove fallen trees and large debris from water bodies." },
-  { icon: <Leaf className="h-5 w-5" />, name: "Pulling Out Cattails", desc: "Extract root systems and prevent regrowth." },
-  { icon: <Hand className="h-5 w-5" />, name: "Debris Removal", desc: "Pull out large objects and obstacles from ponds and lakes." },
+  { 
+    icon: <Hand className="h-5 w-5" />, 
+    name: "Lifting Arm Capacity", 
+    desc: "~350-400kg lifting power via X4 quick-change bracket. Vertical force for excavation and gripping operations." 
+  },
+  { 
+    icon: <Wrench className="h-5 w-5" />, 
+    name: "Doro Digger", 
+    desc: "Max depth: 3m, Lift height: 2.9m, Reach radius: 4m (8m diameter). Outriggers stabilize up to 2m deep." 
+  },
+  { 
+    icon: <Grip className="h-5 w-5" />, 
+    name: "Doro Grip", 
+    desc: "Working depth up to ~1.7m with telescopic extension. Width: 0.49-1.2m. Grabs debris, roots, sediment." 
+  },
 ];
 
 const SITUATIONS = [
-  { icon: <Waves className="h-5 w-5" />, title: "Farm Ponds", desc: "Restore irrigation ponds and livestock watering areas." },
-  { icon: <Fuel className="h-5 w-5" />, title: "Sediment Buildup", desc: "Remove years of accumulated muck and debris." },
-  { icon: <Shield className="h-5 w-5" />, title: "Flood Damage", desc: "Emergency cleanup after storms and flooding." },
-  { icon: <Gauge className="h-5 w-5" />, title: "Shoreline Erosion", desc: "Restore damaged or eroded shorelines." },
+  { 
+    icon: <Tractor className="h-5 w-5" />, 
+    title: "Farm Ponds", 
+    desc: "Restore irrigation ponds and livestock watering areas.",
+    features: ["Irrigation system maintenance", "Livestock water quality", "Agricultural compliance"]
+  },
+  { 
+    icon: <Waves className="h-5 w-5" />, 
+    title: "Sediment Buildup", 
+    desc: "Remove years of accumulated muck and debris.",
+    features: ["Dredging operations", "Sludge removal", "Depth restoration"]
+  },
+  { 
+    icon: <Shield className="h-5 w-5" />, 
+    title: "Flood Damage", 
+    desc: "Emergency cleanup after storms and flooding.",
+    features: ["24/7 emergency response", "Debris removal", "Infrastructure protection"]
+  },
+  { 
+    icon: <Leaf className="h-5 w-5" />, 
+    title: "Invasive Vegetation", 
+    desc: "Control and remove aggressive aquatic plants.",
+    features: ["Reed and cattail removal", "Weed control", "Habitat restoration"]
+  },
+  { 
+    icon: <Gauge className="h-5 w-5" />, 
+    title: "Shoreline Erosion", 
+    desc: "Restore damaged or eroded shorelines.",
+    features: ["Erosion control", "Bank stabilization", "Beach restoration"]
+  },
+  { 
+    icon: <Droplets className="h-5 w-5" />, 
+    title: "Water Quality Issues", 
+    desc: "Improve water clarity and ecosystem health.",
+    features: ["Algae control", "Nutrient management", "Oxygen restoration"]
+  },
 ];
 
 const FAQ = [
@@ -85,6 +145,7 @@ const FAQ = [
 
 export default function PondCleanupLanding() {
   const [email, setEmail] = useState("");
+  const [showDiagramsModal, setShowDiagramsModal] = useState(false);
 
   const jsonLd = useMemo(() => ({
     "@context": "https://schema.org",
@@ -149,9 +210,11 @@ export default function PondCleanupLanding() {
             Specialized services for farmers, ranchers, and agricultural operations.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <Button size="lg" className="gradient-bg hover-lift shadow-glow">Get Free Quote</Button>
+            <Button size="lg" className="gradient-bg hover-lift shadow-glow" asChild>
+              <a href="#contact-form">Get Free Quote</a>
+            </Button>
             <Button variant="secondary" size="lg" className="glass-effect hover-lift" asChild>
-              <a href={BRAND.brochure} download>
+              <a href={BRAND.brochure} target="_blank" rel="noopener noreferrer">
                 <Download className="mr-2 h-4 w-4" /> Download brochure
               </a>
             </Button>
@@ -197,7 +260,9 @@ export default function PondCleanupLanding() {
             <ServiceItem label="Shoreline" value={SERVICES.shoreline} />
             <ServiceItem label="Emergency" value={SERVICES.emergency} />
             <div className="ml-auto">
-              <Button size="sm" variant="outline" className="gradient-bg hover-lift">Get Quote</Button>
+              <Button size="sm" variant="outline" className="gradient-bg hover-lift" asChild>
+                <a href="#contact-form">Get Quote</a>
+              </Button>
             </div>
           </div>
         </div>
@@ -521,7 +586,7 @@ export default function PondCleanupLanding() {
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4 gradient-text">Cut & Pull Capabilities</h2>
-          <p className="text-lg text-muted-foreground">Specialized equipment for precise cutting and powerful pulling operations</p>
+          <p className="text-lg text-muted-foreground">Professional cutting and excavation equipment with precise specifications</p>
         </div>
         
         <div className="grid gap-8 md:grid-cols-2">
@@ -529,8 +594,8 @@ export default function PondCleanupLanding() {
           <Card className="overflow-hidden hover-lift shadow-glow">
             <CardHeader className="nature-gradient">
               <CardTitle className="flex items-center gap-2 text-white">
-                <Zap className="h-6 w-6" />
-                Cut Operations
+                <Scissors className="h-6 w-6" />
+                Cutting Capabilities
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
@@ -547,6 +612,20 @@ export default function PondCleanupLanding() {
                   </div>
                 ))}
               </div>
+              
+              {/* Cutting Summary */}
+              <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <Ruler className="h-4 w-4 text-green-600" />
+                  <span className="font-semibold text-green-800">Cutting Specifications</span>
+                </div>
+                <div className="text-sm text-green-700 space-y-1">
+                  <div>• <strong>Depth Range:</strong> 0.2m - 2.1m (0.65ft - 6.88ft)</div>
+                  <div>• <strong>Width Coverage:</strong> Up to 4m (13.1ft)</div>
+                  <div>• <strong>Specialized:</strong> Wetland cutting with Busati knives</div>
+                  <div>• <strong>Precision:</strong> Hydraulic drift control for accuracy</div>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
@@ -555,7 +634,7 @@ export default function PondCleanupLanding() {
             <CardHeader className="water-gradient">
               <CardTitle className="flex items-center gap-2 text-white">
                 <Hand className="h-6 w-6" />
-                Pull Operations
+                Excavation & Pulling
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
@@ -571,6 +650,82 @@ export default function PondCleanupLanding() {
                     </div>
                   </div>
                 ))}
+              </div>
+              
+              {/* Pulling Summary */}
+              <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <Gauge className="h-4 w-4 text-blue-600" />
+                  <span className="font-semibold text-blue-800">Excavation Specifications</span>
+                </div>
+                <div className="text-sm text-blue-700 space-y-1">
+                  <div>• <strong>Lifting Capacity:</strong> 350-400kg via X4 bracket</div>
+                  <div>• <strong>Max Depth:</strong> 3m below water surface</div>
+                  <div>• <strong>Reach Radius:</strong> 4m (8m diameter coverage)</div>
+                  <div>• <strong>Stability:</strong> Outriggers support up to 2m depth</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        
+        {/* Technical Summary Table */}
+        <div className="mt-12">
+          <Card className="hover-lift shadow-glow">
+            <CardHeader className="gradient-bg text-white">
+              <CardTitle className="flex items-center gap-2">
+                <Settings className="h-5 w-5" />
+                Technical Specifications Summary
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left py-3 px-4 font-semibold">Capability Type</th>
+                      <th className="text-left py-3 px-4 font-semibold">Attachment</th>
+                      <th className="text-left py-3 px-4 font-semibold">Depth / Specifications</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    <tr className="hover:bg-gray-50">
+                      <td className="py-3 px-4 font-medium">Cutting</td>
+                      <td className="py-3 px-4">D20</td>
+                      <td className="py-3 px-4">~1m depth, ~4m width</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="py-3 px-4 font-medium">Cutting (Deeper)</td>
+                      <td className="py-3 px-4">D30</td>
+                      <td className="py-3 px-4">~1.4m depth, ~4m width</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="py-3 px-4 font-medium">Deep-cutting</td>
+                      <td className="py-3 px-4">D40</td>
+                      <td className="py-3 px-4">0.2-2.1m depth, up to 4m width</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="py-3 px-4 font-medium">Wetland cutting</td>
+                      <td className="py-3 px-4">ESM series (20-50)</td>
+                      <td className="py-3 px-4">~0.3-0.8m depth (model dependent)</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="py-3 px-4 font-medium">Lifting capacity</td>
+                      <td className="py-3 px-4">Lifting Arm</td>
+                      <td className="py-3 px-4">~350-400kg lift force via X4 bracket</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="py-3 px-4 font-medium">Excavation</td>
+                      <td className="py-3 px-4">Doro Digger</td>
+                      <td className="py-3 px-4">Max depth 3m, lift 2.9m, reach radius 4m</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="py-3 px-4 font-medium">Grip work</td>
+                      <td className="py-3 px-4">Doro Grip</td>
+                      <td className="py-3 px-4">Working depth up to ~1.7m with extension</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </CardContent>
           </Card>
@@ -735,32 +890,76 @@ export default function PondCleanupLanding() {
       </section>
 
       {/* SITUATIONS WE HANDLE */}
-      <section className="mx-auto max-w-7xl px-6 pb-8">
+      <section className="mx-auto max-w-7xl px-6 py-16 nature-gradient">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Situations We Handle</h2>
-          <p className="text-lg text-muted-foreground">Common problems we solve for property owners and managers</p>
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Situations We Handle</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Professional solutions for common water management challenges. Our amphibious equipment tackles problems 
+            that traditional methods can't reach, delivering results for property owners and managers across the Intermountain West.
+          </p>
         </div>
         
-        <div className="grid gap-6 md:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {SITUATIONS.map((situation, i) => (
-            <Card key={situation.title} className="overflow-hidden hover-lift shadow-glow">
-              <div className="relative h-48">
+            <Card key={situation.title} className="overflow-hidden hover-lift shadow-glow bg-white/90 backdrop-blur-sm">
+              <div className="relative h-56">
                 <img 
-                  src={`/images/New Images/Truxor_Cutting-Collecting_${5 + i * 4}_web.jpg`} 
+                  src={`/images/New Images/Truxor_Cutting-Collecting_${8 + i * 3}_web.jpg`} 
                   alt={`${situation.title} - ${situation.desc}`} 
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-black/30"></div>
-                <div className="absolute top-4 left-4">
-                  {situation.icon}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute top-4 left-4 p-2 bg-white/20 backdrop-blur-sm rounded-lg">
+                  <div className="text-white">
+                    {situation.icon}
+                  </div>
+                </div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h3 className="text-xl font-bold text-white mb-1">{situation.title}</h3>
+                  <p className="text-sm text-white/90">{situation.desc}</p>
                 </div>
               </div>
               <CardContent className="p-6">
-                <div className="text-lg font-semibold mb-2">{situation.title}</div>
-                <div className="text-sm text-muted-foreground">{situation.desc}</div>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span className="text-sm font-medium text-blue-600">Key Services</span>
+                  </div>
+                  <ul className="space-y-2">
+                    {situation.features.map((feature, index) => (
+                      <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </CardContent>
             </Card>
           ))}
+        </div>
+        
+        {/* Call to Action */}
+        <div className="mt-12 text-center">
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-8 max-w-2xl mx-auto">
+            <h3 className="text-xl font-semibold mb-3 gradient-text">Don't See Your Situation Listed?</h3>
+            <p className="text-muted-foreground mb-6">
+              Our professional amphibious equipment can handle unique challenges that other services can't reach. 
+              Contact us to discuss your specific water management needs.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button className="gradient-bg hover-lift shadow-glow" asChild>
+                <a href="#contact-form">
+                  <Phone className="mr-2 h-4 w-4" />
+                  Get Free Consultation
+                </a>
+              </Button>
+              <Button variant="outline" className="hover-lift">
+                <MessageCircle className="mr-2 h-4 w-4" />
+                Send Photos
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -784,27 +983,161 @@ export default function PondCleanupLanding() {
         </Tabs>
       </section>
 
-      {/* ROI CALCULATOR */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      {/* ROI CALCULATOR & CONTACT */}
+      <section id="contact-form" className="mx-auto max-w-7xl px-6 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Calculate Your Investment Return</h2>
+          <p className="text-lg text-muted-foreground">See how our professional equipment delivers exceptional value and rapid ROI</p>
+        </div>
+        
         <div className="grid gap-8 md:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>ROI forecaster</CardTitle>
+          {/* Enhanced ROI Calculator */}
+          <Card className="hover-lift shadow-glow">
+            <CardHeader className="gradient-bg text-white">
+              <CardTitle className="flex items-center gap-2">
+                <Zap className="h-5 w-5" />
+                Investment Return Calculator
+              </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="mb-4 text-sm text-muted-foreground">Our professional equipment delivers exceptional value. Most clients see a return on investment within 6-12 months.</p>
-              <div className="h-64 w-full bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">40-60%</div>
-                  <div className="text-sm text-gray-600">Typical time savings</div>
-                  <div className="text-3xl font-bold text-green-600 mt-4 mb-2">$2K-5K</div>
-                  <div className="text-sm text-gray-600">Average cost savings per project</div>
+            <CardContent className="p-6">
+              <p className="mb-6 text-sm text-muted-foreground">
+                Our professional amphibious equipment delivers exceptional value. Most clients see a return on investment within 6-12 months through improved water management and reduced maintenance costs.
+              </p>
+              
+              <div className="space-y-6">
+                {/* Time Savings */}
+                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg border border-blue-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-semibold text-blue-800">Time Savings</span>
+                    <span className="text-2xl font-bold text-blue-600">40-60%</span>
+                  </div>
+                  <div className="text-sm text-blue-700">
+                    Faster project completion compared to traditional methods
+                  </div>
                 </div>
+                
+                {/* Cost Savings */}
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-semibold text-green-800">Cost Savings</span>
+                    <span className="text-2xl font-bold text-green-600">$2K-5K</span>
+                  </div>
+                  <div className="text-sm text-green-700">
+                    Average savings per project through efficient equipment
+                  </div>
+                </div>
+                
+                {/* ROI Timeline */}
+                <div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-4 rounded-lg border border-purple-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-semibold text-purple-800">ROI Timeline</span>
+                    <span className="text-2xl font-bold text-purple-600">6-12 months</span>
+                  </div>
+                  <div className="text-sm text-purple-700">
+                    Typical return on investment period for most projects
+                  </div>
+                </div>
+                
+                {/* Additional Benefits */}
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span>Reduced maintenance</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Improved water quality</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <span>Enhanced property value</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <span>Environmental compliance</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <Shield className="h-4 w-4 text-yellow-600" />
+                  <span className="font-semibold text-yellow-800">Guaranteed Results</span>
+                </div>
+                <p className="text-sm text-yellow-700">
+                  We stand behind our work with a satisfaction guarantee. If you're not completely satisfied with the results, we'll make it right.
+                </p>
               </div>
             </CardContent>
           </Card>
 
-                      <ContactForm />
+          {/* Contact Form & Info */}
+          <div className="space-y-4">
+            <ContactForm />
+            
+            {/* Compact Contact Information */}
+            <Card className="hover-lift shadow-glow">
+              <CardHeader className="water-gradient text-white py-4">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Phone className="h-5 w-5" />
+                  Contact Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-100 rounded-lg">
+                      <Phone className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm">Phone</div>
+                      <div className="text-xs text-muted-foreground">+1-801-555-0123</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-green-100 rounded-lg">
+                      <MessageCircle className="h-4 w-4 text-green-600" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm">Email</div>
+                      <div className="text-xs text-muted-foreground">info@pondcleanup.com</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-purple-100 rounded-lg">
+                      <MapPin className="h-4 w-4 text-purple-600" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm">Service Areas</div>
+                      <div className="text-xs text-muted-foreground">Utah, Wyoming, Idaho, Arizona</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-red-100 rounded-lg">
+                      <Zap className="h-4 w-4 text-red-600" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm">Emergency</div>
+                      <div className="text-xs text-muted-foreground">24/7 Response</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Clock className="h-3 w-3 text-blue-600" />
+                    <span className="font-semibold text-blue-800 text-xs">Response Time</span>
+                  </div>
+                  <p className="text-xs text-blue-700">
+                    We respond within 2-4 hours during business hours. Emergency requests handled immediately.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
@@ -934,8 +1267,11 @@ export default function PondCleanupLanding() {
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4 gradient-text">Resources & FAQ</h2>
-          <p className="text-lg text-muted-foreground">Helpful resources and answers to common questions</p>
+          <p className="text-lg text-muted-foreground">Helpful resources, technical specifications, and answers to common questions</p>
         </div>
+        
+
+
         <div className="grid gap-8 md:grid-cols-2">
           <Card className="hover-lift shadow-glow">
             <CardHeader>
@@ -946,6 +1282,8 @@ export default function PondCleanupLanding() {
               <ResourceItem title="Hydraulic schematics" href="#" />
               <ResourceItem title="Attachment compatibility chart" href="#" />
               <ResourceItem title="Environmental compliance guide" href="#" />
+              <ResourceItem title="Equipment specifications" onClick={() => setShowDiagramsModal(true)} />
+              <ResourceItem title="Maintenance procedures" href="#" />
             </CardContent>
           </Card>
 
@@ -1013,6 +1351,138 @@ export default function PondCleanupLanding() {
           </div>
         </div>
       </footer>
+
+      {/* Equipment Diagrams Modal */}
+      {showDiagramsModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold gradient-text">Equipment Technical Diagrams</h3>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => setShowDiagramsModal(false)}
+                  className="hover:bg-gray-100"
+                >
+                  ✕
+                </Button>
+              </div>
+              
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                
+                {/* System Overview Diagram */}
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-center gradient-text">System Overview</h4>
+                  <div className="bg-gray-50 p-4 rounded-lg border font-mono text-sm">
+                    <div className="text-center mb-2">[ Operator Cab ]</div>
+                    <div className="text-center mb-2">│</div>
+                    <div className="text-center mb-2">[ Hydraulic Power Unit ]</div>
+                    <div className="text-center mb-2">│</div>
+                    <div className="text-center">
+                      <div className="flex justify-center gap-4 mb-2">
+                        <div className="text-center">
+                          <div>[ Cutting Tools ]</div>
+                          <div className="text-xs text-muted-foreground">(Reeds, weeds)</div>
+                        </div>
+                        <div className="text-center">
+                          <div>[ Dredge Pump ]</div>
+                          <div className="text-xs text-muted-foreground">(Sludge)</div>
+                        </div>
+                        <div className="text-center">
+                          <div>[ Excavator Arm ]</div>
+                          <div className="text-xs text-muted-foreground">(Digging, pulling)</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Control System Diagram */}
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-center gradient-text">Control System</h4>
+                  <div className="bg-gray-50 p-4 rounded-lg border font-mono text-sm">
+                    <div className="text-center mb-2">[Operator Joystick]</div>
+                    <div className="text-center mb-2">│</div>
+                    <div className="text-center mb-2">[Hydraulic Lines]</div>
+                    <div className="text-center mb-2">│</div>
+                    <div className="text-center mb-2">[Quick-Change X4]</div>
+                    <div className="text-center mb-2 text-xs text-muted-foreground">(350–400 kg lift cap)</div>
+                    <div className="text-center">
+                      <div className="flex justify-center gap-2 text-xs">
+                        <div>[Doro Cutter]</div>
+                        <div>[Doro Pump]</div>
+                        <div>[Doro Digger]</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Cutting System Specifications */}
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-center gradient-text">Cutting System</h4>
+                  <div className="bg-gray-50 p-4 rounded-lg border font-mono text-sm">
+                    <div className="text-center mb-2">┌──────────────────────────┐</div>
+                    <div className="text-center mb-2">│   Busati Double Knife    │</div>
+                    <div className="text-center mb-2">└──────────────────────────┘</div>
+                    <div className="text-center mb-2">│</div>
+                    <div className="text-center mb-2">Cutting depth: 0.5–2.1 m</div>
+                    <div className="text-center mb-2">Width: 2–4 m (depending on model)</div>
+                    <div className="text-center mt-4">
+                      <div className="text-xs font-semibold mb-1">Attachments:</div>
+                      <div className="text-xs text-muted-foreground">• D20/D30/D40 = aquatic vegetation</div>
+                      <div className="text-xs text-muted-foreground">• ESM20–60 = wetlands, coarse plants</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hydraulic Arm & Tools */}
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-center gradient-text">Hydraulic Arm & Tools</h4>
+                  <div className="bg-gray-50 p-4 rounded-lg border font-mono text-sm">
+                    <div className="text-center mb-2">[Hydraulic Arm]</div>
+                    <div className="text-center mb-2">│</div>
+                    <div className="text-center mb-2">┌───────┼────────┐</div>
+                    <div className="text-center mb-2">│                │</div>
+                    <div className="text-center mb-2">[Bucket / Shovel]   [Grip Tool]</div>
+                    <div className="text-center mb-2 text-xs text-muted-foreground">(Digging 3m deep)   (Pulling roots, debris)</div>
+                    <div className="text-center mt-4">
+                      <div className="text-xs font-semibold mb-1">Specs:</div>
+                      <div className="text-xs text-muted-foreground">• Max depth: 3 m</div>
+                      <div className="text-xs text-muted-foreground">• Max lift: ~400 kg</div>
+                      <div className="text-xs text-muted-foreground">• Max radius: 4 m</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Environmental Tools */}
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-center gradient-text">Environmental Tools</h4>
+                  <div className="bg-gray-50 p-4 rounded-lg border font-mono text-sm">
+                    <div className="text-center mb-2">[Truxor T50]</div>
+                    <div className="text-center mb-2">│</div>
+                    <div className="text-center mb-2">[Hydraulic PTO]</div>
+                    <div className="text-center mb-2">│</div>
+                    <div className="text-center mb-2">┌──────┼───────────┬────────────┐</div>
+                    <div className="text-center mb-2">│      │           │            │</div>
+                    <div className="text-center mb-2">[Skimmer]  [Roll Pump]   [Doro Tank]  [Spreader]</div>
+                    <div className="text-center mb-2 text-xs text-muted-foreground">(Oil)     (Sludge)      (Waste)     (Granules)</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-8 text-center">
+                <Button 
+                  onClick={() => setShowDiagramsModal(false)}
+                  className="gradient-bg hover-lift"
+                >
+                  Close
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
@@ -1317,9 +1787,11 @@ function ServiceAreas() {
             <div className="text-xs text-muted-foreground">
               <strong>Give us a call anyway!</strong> We'll discuss your specific needs and may be able to accommodate your project.
             </div>
-            <Button className="gradient-bg hover-lift shadow-glow">
-              <Phone className="h-4 w-4 mr-2" />
-              Contact Us
+            <Button className="gradient-bg hover-lift shadow-glow" asChild>
+              <a href="#contact-form">
+                <Phone className="h-4 w-4 mr-2" />
+                Contact Us
+              </a>
             </Button>
           </div>
         </div>
@@ -1372,11 +1844,19 @@ function InfoLine({ icon, label, value }: { icon: React.ReactNode; label: string
   );
 }
 
-function ResourceItem({ title, href }: { title: string; href: string }) {
+function ResourceItem({ title, href, onClick }: { title: string; href?: string; onClick?: () => void }) {
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else if (href) {
+      window.open(href, '_blank');
+    }
+  };
+
   return (
-    <a href={href} className="flex items-center justify-between rounded-xl border p-4 hover-lift glass-effect">
+    <div className="flex items-center justify-between rounded-xl border p-4 hover-lift glass-effect cursor-pointer" onClick={handleClick}>
       <span>{title}</span>
       <Button variant="secondary" size="sm" className="gradient-bg hover-lift">Open</Button>
-    </a>
+    </div>
   );
 }

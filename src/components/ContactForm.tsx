@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Check, AlertCircle, Send, Phone, Mail, MapPin } from "lucide-react";
+import { Check, AlertCircle, Send, Phone, MapPin } from "lucide-react";
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -309,45 +309,7 @@ export default function ContactForm() {
         </CardContent>
       </Card>
 
-      {/* Contact Information */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Contact Information</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Phone className="h-4 w-4 text-blue-600" />
-              </div>
-              <div>
-                <p className="font-medium">Phone</p>
-                <p className="text-sm text-muted-foreground">(801) 555-0123</p>
-              </div>
-            </div>
 
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-green-100 rounded-lg">
-                <Mail className="h-4 w-4 text-green-600" />
-              </div>
-              <div>
-                <p className="font-medium">Email</p>
-                <p className="text-sm text-muted-foreground">info@pondcleanup.com</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-purple-100 rounded-lg">
-                <MapPin className="h-4 w-4 text-purple-600" />
-              </div>
-              <div>
-                <p className="font-medium">Service Area</p>
-                <p className="text-sm text-muted-foreground">Utah Statewide</p>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }

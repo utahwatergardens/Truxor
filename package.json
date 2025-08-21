@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "generate-brochure": "node scripts/generate-brochure.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
@@ -29,6 +30,7 @@
     "react-hook-form": "^7.62.0",
     "recharts": "^2.8.0",
     "tailwind-merge": "^2.0.0",
+    "puppeteer": "^21.0.0",
 
     "zod": "^4.0.17"
   },
