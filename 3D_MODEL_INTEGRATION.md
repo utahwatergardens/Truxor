@@ -22,7 +22,7 @@ public/
 - ✅ Mobile-friendly controls
 
 ## Usage
-The GLBViewer component will automatically load your model once it's placed in the correct location. Users can:
+The Simple3DViewer component will automatically load your model once it's placed in the correct location. Users can:
 - Rotate the model by dragging
 - Zoom with mouse wheel
 - Pan by right-clicking and dragging
@@ -30,4 +30,4 @@ The GLBViewer component will automatically load your model once it's placed in t
 - Select different attachments to highlight
 
 ## Customization
-Edit the `ATTACHMENTS` array in `src/components/GLBViewer.tsx` to match your actual model's mesh names and descriptions.
+Edit the `ATTACHMENTS` array in `src/components/Simple3DViewer.tsx` to match your actual model's mesh names and descriptions.
