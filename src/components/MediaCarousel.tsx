@@ -21,7 +21,7 @@ const MEDIA_ITEMS: MediaItem[] = [
     id: '1',
     type: 'image',
     src: '/images/New Images/Truxor_Cutting-Collecting_1_web.jpg',
-    alt: 'Truxor equipment in action',
+    alt: 'Our professional equipment in action',
     title: 'Equipment in Action',
     description: 'Professional pond cleanup equipment operating in challenging conditions'
   },

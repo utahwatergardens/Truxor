@@ -72,7 +72,7 @@ export default function ModelViewer() {
             <div className="text-center">
               <div className="text-6xl mb-4">🚤</div>
               <div className="text-lg font-semibold text-gray-700 mb-2">
-                {isExploded ? "Exploded View" : "Truxor T50 Equipment"}
+                {isExploded ? "Exploded View" : "Our Professional Equipment"}
               </div>
               <div className="text-sm text-gray-600 mb-4">
                 {selectedAttachment 

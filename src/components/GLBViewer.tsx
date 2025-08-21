@@ -1,13 +1,38 @@
 "use client";
 
-import { useState, useRef, Suspense } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { OrbitControls, Environment, useGLTF, PresentationControls } from '@react-three/drei';
+import { useState, useRef, Suspense, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Wrench, Leaf, Hand, Zap, RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
-import * as THREE from 'three';
+import { Wrench, Leaf, Hand, Zap, RotateCcw, ZoomIn, ZoomOut, AlertTriangle } from "lucide-react";
+
+// Dynamic imports to handle React Three Fiber compatibility
+let Canvas: any = null;
+let useFrame: any = null;
+let useLoader: any = null;
+let OrbitControls: any = null;
+let Environment: any = null;
+let useGLTF: any = null;
+let PresentationControls: any = null;
+let THREE: any = null;
+
+// Try to load React Three Fiber components
+try {
+  const threeFiber = require('@react-three/fiber');
+  const drei = require('@react-three/drei');
+  const three = require('three');
+  
+  Canvas = threeFiber.Canvas;
+  useFrame = threeFiber.useFrame;
+  useLoader = threeFiber.useLoader;
+  OrbitControls = drei.OrbitControls;
+  Environment = drei.Environment;
+  useGLTF = drei.useGLTF;
+  PresentationControls = drei.PresentationControls;
+  THREE = three;
+} catch (error) {
+  console.warn('React Three Fiber not available:', error);
+}
 
 interface Attachment {
   id: string;
@@ -58,38 +83,50 @@ function Model({ glbPath, attachments, isExploded }: {
   attachments: Attachment[];
   isExploded: boolean;
 }) {
-  const { scene } = useGLTF(glbPath);
-  const modelRef = useRef<THREE.Group>(null);
-
-  useFrame((state) => {
-    if (modelRef.current) {
-      // Gentle rotation animation
-      modelRef.current.rotation.y += 0.005;
-    }
-  });
-
-  // Clone the scene to avoid conflicts
-  const clonedScene = scene.clone();
-
-  // Apply explosion effect if enabled
-  if (isExploded && modelRef.current) {
-    clonedScene.children.forEach((child, index) => {
-      if (child instanceof THREE.Mesh) {
-        const direction = new THREE.Vector3(
-          Math.sin(index * 0.5) * 2,
-          Math.cos(index * 0.5) * 1,
-          Math.sin(index * 0.3) * 2
-        );
-        child.position.add(direction);
-      }
-    });
+  // Check if React Three Fiber is available
+  if (!useGLTF || !THREE) {
+    return null;
   }
 
-  return (
-    <group ref={modelRef}>
-      <primitive object={clonedScene} />
-    </group>
-  );
+  try {
+    const { scene } = useGLTF(glbPath);
+    const modelRef = useRef<any>(null);
+
+    if (useFrame) {
+      useFrame((state: any) => {
+        if (modelRef.current) {
+          // Gentle rotation animation
+          modelRef.current.rotation.y += 0.005;
+        }
+      });
+    }
+
+    // Clone the scene to avoid conflicts
+    const clonedScene = scene.clone();
+
+    // Apply explosion effect if enabled
+    if (isExploded && modelRef.current) {
+      clonedScene.children.forEach((child: any, index: number) => {
+        if (child instanceof THREE.Mesh) {
+          const direction = new THREE.Vector3(
+            Math.sin(index * 0.5) * 2,
+            Math.cos(index * 0.5) * 1,
+            Math.sin(index * 0.3) * 2
+          );
+          child.position.add(direction);
+        }
+      });
+    }
+
+    return (
+      <group ref={modelRef}>
+        <primitive object={clonedScene} />
+      </group>
+    );
+  } catch (error) {
+    console.error('Error loading 3D model:', error);
+    return null;
+  }
 }
 
 function LoadingSpinner() {
@@ -103,7 +140,7 @@ function LoadingSpinner() {
 export default function GLBViewer() {
   const [selectedAttachment, setSelectedAttachment] = useState<string | null>(null);
   const [isExploded, setIsExploded] = useState(false);
-  const [glbPath, setGlbPath] = useState<string | null>(null);
+  const [glbPath, setGlbPath] = useState<string | null>("/8_20_2025.glb"); // Default to your uploaded model
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -174,7 +211,7 @@ export default function GLBViewer() {
         </CardHeader>
         <CardContent>
           <div className="relative h-96 w-full bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg overflow-hidden">
-            {glbPath ? (
+            {glbPath && Canvas ? (
               <Canvas
                 camera={{ position: [0, 0, 5], fov: 50 }}
                 style={{ background: 'transparent' }}
@@ -206,6 +243,23 @@ export default function GLBViewer() {
                   />
                 </Suspense>
               </Canvas>
+            ) : !Canvas ? (
+              <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                  <div className="text-6xl mb-4">⚠️</div>
+                  <div className="text-lg font-semibold text-gray-700 mb-2">
+                    3D Viewer Temporarily Unavailable
+                  </div>
+                  <div className="text-sm text-gray-600 mb-4">
+                    React Three Fiber compatibility issue detected. 
+                    The 3D viewer will be available once your model is ready.
+                  </div>
+                  <Badge variant="secondary" className="flex items-center gap-1">
+                    <AlertTriangle className="h-3 w-3" />
+                    Technical Issue
+                  </Badge>
+                </div>
+              </div>
             ) : (
               <div className="flex items-center justify-center h-full">
                 <div className="text-center">

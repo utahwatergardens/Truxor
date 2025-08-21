@@ -13,13 +13,13 @@ Converting an MP4 video to a GLB file requires extracting frames and using them 
 # Download from: https://ffmpeg.org/download.html
 
 # Extract frames every 2 seconds (adjust as needed)
-ffmpeg -i "J:\truxor\public\videos\equipment-3d-render.mp4" -vf "fps=1/2" temp_frames/frame_%04d.png
+ffmpeg -i "J:\truxor\public\images\New Images\Truxor_T_Video_Generation.mp4" -vf "fps=1/2" temp_frames/frame_%04d.png
 
-# Extract frames at specific timestamps
-ffmpeg -i "J:\truxor\public\videos\equipment-3d-render.mp4" -ss 00:00:00 -vframes 1 temp_frames/front_view.png
-ffmpeg -i "J:\truxor\public\videos\equipment-3d-render.mp4" -ss 00:00:05 -vframes 1 temp_frames/side_view.png
-ffmpeg -i "J:\truxor\public\videos\equipment-3d-render.mp4" -ss 00:00:10 -vframes 1 temp_frames/back_view.png
-ffmpeg -i "J:\truxor\public\videos\equipment-3d-render.mp4" -ss 00:00:15 -vframes 1 temp_frames/top_view.png
+# Extract frames at specific timestamps (adjusted for 7.79 second video)
+ffmpeg -i "J:\truxor\public\images\New Images\Truxor_T_Video_Generation.mp4" -ss 00:00:00 -vframes 1 temp_frames/front_view.png
+ffmpeg -i "J:\truxor\public\images\New Images\Truxor_T_Video_Generation.mp4" -ss 00:00:02 -vframes 1 temp_frames/side_view.png
+ffmpeg -i "J:\truxor\public\images\New Images\Truxor_T_Video_Generation.mp4" -ss 00:00:04 -vframes 1 temp_frames/back_view.png
+ffmpeg -i "J:\truxor\public\images\New Images\Truxor_T_Video_Generation.mp4" -ss 00:00:06 -vframes 1 temp_frames/top_view.png
 ```
 
 #### **Using Online Tools**
@@ -30,31 +30,32 @@ ffmpeg -i "J:\truxor\public\videos\equipment-3d-render.mp4" -ss 00:00:15 -vframe
 
 ### **Step 2: Use AI to Generate 3D Model from Frames**
 
-#### **Option A: Luma AI (Best for Equipment)**
-1. **Go to [luma.ai](https://luma.ai)**
-2. **Upload your best frame** (clearest view of the equipment)
-3. **Add detailed description**:
+#### **Option A: Polycam AI (FREE)**
+1. **Go to [polycam.ai](https://polycam.ai)**
+2. **Use their "AI Generation" feature**
+3. **Upload your best frame** (clearest view of the equipment)
+4. **Add detailed description**:
    ```
    Professional pond cleanup equipment, amphibious vehicle with tracks, 
    cutting arm, collection system, industrial machinery, detailed 3D model, 
    realistic materials, high quality textures
    ```
-4. **Select "Object" generation type**
 5. **Generate the 3D model**
 6. **Download as GLB file**
 
-#### **Option B: Polycam AI**
-1. **Visit [polycam.ai](https://polycam.ai)**
+#### **Option B: Kaedim3D (FREE tier available)**
+1. **Visit [kaedim3d.com](https://kaedim3d.com)**
 2. **Use their "AI Generation" feature**
 3. **Upload multiple frames** from different angles
 4. **Generate 3D model**
 5. **Export as GLB**
 
-#### **Option C: Kaedim3D**
-1. **Go to [kaedim3d.com](https://kaedim3d.com)**
-2. **Upload your reference images**
-3. **Generate professional 3D model**
-4. **Download GLB file**
+#### **Option C: Leonardo.ai (FREE credits)**
+1. **Go to [leonardo.ai](https://leonardo.ai)**
+2. **Use their "3D Generation" feature**
+3. **Upload your reference images**
+4. **Generate professional 3D model**
+5. **Download GLB file**
 
 ### **Step 3: Optimize the GLB File**
 ```bash
@@ -223,9 +224,9 @@ const [glbPath, setGlbPath] = useState('/models/equipment.glb');
 ## 📊 **Expected Results**
 
 ### **AI Generation Quality**
-- **Luma AI**: High quality, realistic materials
-- **Polycam**: Good for simple objects
-- **Kaedim3D**: Professional quality, detailed
+- **Polycam AI**: High quality, realistic materials (FREE)
+- **Kaedim3D**: Professional quality, detailed (FREE tier)
+- **Leonardo.ai**: Good quality with free credits
 
 ### **Manual Modeling Quality**
 - **Complete control** over every detail
@@ -235,7 +236,7 @@ const [glbPath, setGlbPath] = useState('/models/equipment.glb');
 ## 🎯 **Recommended Workflow**
 
 1. **Extract key frames** from your MP4
-2. **Use Luma AI** to generate initial 3D model
+2. **Use Polycam AI** to generate initial 3D model (FREE)
 3. **Import to Blender** for refinement
 4. **Add missing details** manually
 5. **Optimize for web** use
@@ -245,10 +246,11 @@ const [glbPath, setGlbPath] = useState('/models/equipment.glb');
 ## 📚 **Resources**
 
 ### **Tools & Services**
-- **FFmpeg**: [ffmpeg.org](https://ffmpeg.org)
-- **Luma AI**: [luma.ai](https://luma.ai)
-- **Polycam**: [polycam.ai](https://polycam.ai)
-- **Blender**: [blender.org](https://blender.org)
+- **FFmpeg**: [ffmpeg.org](https://ffmpeg.org) (FREE)
+- **Polycam AI**: [polycam.ai](https://polycam.ai) (FREE)
+- **Kaedim3D**: [kaedim3d.com](https://kaedim3d.com) (FREE tier)
+- **Leonardo.ai**: [leonardo.ai](https://leonardo.ai) (FREE credits)
+- **Blender**: [blender.org](https://blender.org) (FREE)
 
 ### **Learning Resources**
 - **Blender Tutorials**: [blender.org/support/tutorials](https://blender.org/support/tutorials)
@@ -257,4 +259,4 @@ const [glbPath, setGlbPath] = useState('/models/equipment.glb');
 
 ---
 
-**Need Help?** Start with Method 1 (Luma AI) for the quickest results, then refine in Blender if needed.
+**Need Help?** Start with Method 1 (Polycam AI) for the quickest FREE results, then refine in Blender if needed.
