@@ -141,6 +141,31 @@ export default function Simple3DViewer() {
   const [isExploded, setIsExploded] = useState(false);
   const [glbPath, setGlbPath] = useState<string | null>("/8_20_2025.glb");
   const [show3DViewer, setShow3DViewer] = useState(true);
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+
+  // Define attachment categories
+  const attachmentCategories = {
+    all: "All Tools",
+    cutting: "Cutting",
+    collection: "Collection", 
+    dredging: "Dredging",
+    specialty: "Specialty"
+  };
+
+  // Filter attachments based on active category
+  const filteredAttachments = ATTACHMENTS.filter(attachment => {
+    if (activeCategory === "all") return true;
+    
+    // Define which attachments belong to which categories
+    const categoryMap: { [key: string]: string[] } = {
+      cutting: ["dorocutter-d", "doro-esm", "flail-mulcher", "wood-chipper"],
+      collection: ["reed-rake", "dorogrip"],
+      dredging: ["doro-pump-v3", "doro-pump-screw", "sala-rollpump"],
+      specialty: ["doro-digger", "outrigger", "doroskimmer", "hydraulic-propeller", "doromiller", "trailer"]
+    };
+    
+    return categoryMap[activeCategory]?.includes(attachment.id) || false;
+  });
   const resetView = () => {
     console.log('Reset view');
   };
@@ -246,53 +271,112 @@ export default function Simple3DViewer() {
       {/* Attachment Controls */}
       <Card>
         <CardHeader>
-          <CardTitle>Official Attachments & Tools</CardTitle>
-          <p className="text-sm text-muted-foreground">
-            Our machine is compatible with the full suite of original tools, thanks to its powerful hydraulic outputs and quick-change bracket (X4) system.
+          <CardTitle className="text-2xl font-bold">Official Attachments & Tools</CardTitle>
+          <p className="text-base text-muted-foreground max-w-4xl">
+            Our machine is compatible with the full suite of original tools, thanks to its powerful hydraulic outputs and quick-change bracket (X4) system. 
+            Each attachment is designed for specific applications and can be easily swapped for maximum versatility.
           </p>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {ATTACHMENTS.map((attachment) => (
+          {/* Category Tabs */}
+          <div className="mb-6">
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(attachmentCategories).map(([key, label]) => (
+                <Badge
+                  key={key}
+                  variant={activeCategory === key ? "default" : "outline"}
+                  className={`cursor-pointer transition-all duration-200 ${
+                    activeCategory === key 
+                      ? "bg-blue-600 hover:bg-blue-700" 
+                      : "hover:bg-blue-50 hover:border-blue-300"
+                  }`}
+                  onClick={() => setActiveCategory(key)}
+                >
+                  {label}
+                </Badge>
+              ))}
+            </div>
+            {activeCategory !== "all" && (
+              <div className="mt-3 text-sm text-gray-600">
+                Showing {filteredAttachments.length} of {ATTACHMENTS.length} attachments
+              </div>
+            )}
+          </div>
+
+          {/* Enhanced Grid Layout - Expanded Cards */}
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredAttachments.map((attachment) => (
               <div
                 key={attachment.id}
-                className={`relative rounded-lg border p-3 cursor-pointer transition-all hover:shadow-md ${
+                className={`group relative rounded-xl border-2 p-6 cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 ${
                   selectedAttachment === attachment.id 
-                    ? 'border-blue-500 bg-blue-50' 
-                    : 'hover:border-gray-300'
+                    ? 'border-blue-500 bg-gradient-to-br from-blue-50 to-blue-100 shadow-xl' 
+                    : 'border-gray-200 hover:border-blue-300 bg-white'
                 }`}
                 onClick={() => setSelectedAttachment(
                   selectedAttachment === attachment.id ? null : attachment.id
                 )}
               >
-                <div className="flex gap-2">
-                  <div className="relative w-12 h-12 rounded-md overflow-hidden flex-shrink-0">
-                    <img 
-                      src={attachment.image} 
-                      alt={attachment.name} 
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/20"></div>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-1.5 mb-1">
-                      {attachment.icon}
-                      <span className="font-medium text-sm truncate">{attachment.name}</span>
-                    </div>
-                    <div className="text-xs text-muted-foreground leading-relaxed">
-                      {attachment.description}
-                    </div>
+                {/* Image Section - Larger */}
+                <div className="relative w-full h-32 rounded-lg overflow-hidden mb-4">
+                  <img 
+                    src={attachment.image} 
+                    alt={attachment.name} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute top-3 left-3 p-2 rounded-lg bg-white/95 backdrop-blur-sm shadow-sm">
+                    {attachment.icon}
                   </div>
                 </div>
+
+                {/* Content Section - Enhanced */}
+                <div className="space-y-3">
+                  <h4 className="font-bold text-base text-gray-900 leading-tight group-hover:text-blue-700 transition-colors">
+                    {attachment.name}
+                  </h4>
+                  <p className="text-sm text-gray-600 leading-relaxed line-clamp-4">
+                    {attachment.description}
+                  </p>
+                </div>
+
+                {/* Selection Indicator */}
                 {selectedAttachment === attachment.id && (
-                  <div className="absolute top-1 right-1">
-                    <Badge variant="default" className="text-xs px-1.5 py-0.5">
+                  <div className="absolute top-3 right-3">
+                    <Badge variant="default" className="text-sm px-3 py-1 bg-blue-600 shadow-lg">
                       Selected
                     </Badge>
                   </div>
                 )}
+
+                {/* Hover Effect Overlay */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-blue-600/0 to-blue-600/0 group-hover:from-blue-600/5 group-hover:to-blue-600/10 transition-all duration-300 pointer-events-none"></div>
               </div>
             ))}
+          </div>
+
+          {/* Summary Stats */}
+          <div className="mt-8 pt-6 border-t border-gray-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="p-4 rounded-lg bg-blue-50">
+                <div className="text-2xl font-bold text-blue-600">{filteredAttachments.length}</div>
+                <div className="text-sm text-blue-700">
+                  {activeCategory === "all" ? "Total Attachments" : `${activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1)} Tools`}
+                </div>
+              </div>
+              <div className="p-4 rounded-lg bg-green-50">
+                <div className="text-2xl font-bold text-green-600">4</div>
+                <div className="text-sm text-green-700">Categories</div>
+              </div>
+              <div className="p-4 rounded-lg bg-purple-50">
+                <div className="text-2xl font-bold text-purple-600">X4</div>
+                <div className="text-sm text-purple-700">Quick-Change System</div>
+              </div>
+              <div className="p-4 rounded-lg bg-orange-50">
+                <div className="text-2xl font-bold text-orange-600">100%</div>
+                <div className="text-sm text-orange-700">Compatible</div>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>

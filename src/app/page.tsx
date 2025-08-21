@@ -214,6 +214,9 @@ export default function PondCleanupLanding() {
               <a href="#contact-form">Get Free Quote</a>
             </Button>
             <Button variant="secondary" size="lg" className="glass-effect hover-lift" asChild>
+              <a href="#equipment-demo">View Equipment Demo</a>
+            </Button>
+            <Button variant="outline" size="lg" className="hover-lift" asChild>
               <a href={BRAND.brochure} target="_blank" rel="noopener noreferrer">
                 <Download className="mr-2 h-4 w-4" /> Download brochure
               </a>
@@ -223,14 +226,48 @@ export default function PondCleanupLanding() {
         <div className="pointer-events-none absolute inset-0 bg-black/40" />
       </section>
 
+      {/* INTERNAL NAVIGATION */}
+      <section className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+        <div className="mx-auto max-w-7xl px-6 py-4">
+          <nav className="flex flex-wrap items-center justify-center gap-4 text-sm">
+            <a href="#equipment-demo" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors">
+              <ShipWheel className="h-4 w-4" />
+              Equipment Demo
+            </a>
+            <a href="#job-types" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors">
+              <Wrench className="h-4 w-4" />
+              Job Types
+            </a>
+            <a href="#cutting-excavation" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors">
+              <Scissors className="h-4 w-4" />
+              Capabilities
+            </a>
+            <a href="#farm-services" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors">
+              <Tractor className="h-4 w-4" />
+              Farm Services
+            </a>
+            <a href="#before-after" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors">
+              <Trees className="h-4 w-4" />
+              Results
+            </a>
+            <a href="#contact-form" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors">
+              <Phone className="h-4 w-4" />
+              Get Quote
+            </a>
+          </nav>
+        </div>
+      </section>
+
       {/* EQUIPMENT VIDEO DEMONSTRATION SECTION */}
-      <section className="mx-auto max-w-7xl px-6 py-16 water-gradient">
+      <section id="equipment-demo" className="mx-auto max-w-7xl px-6 py-16 water-gradient">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-4 gradient-text">
             Professional Equipment in Action
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Watch our specialized amphibious equipment demonstrate real pond cleanup capabilities and precision operations
+            Watch our specialized amphibious equipment demonstrate real pond cleanup capabilities and precision operations. 
+            <a href="#job-types" className="text-blue-600 hover:text-blue-800 underline ml-1">Learn about our job types</a> or 
+            <a href="#cutting-excavation" className="text-blue-600 hover:text-blue-800 underline ml-1">view detailed capabilities</a>.
           </p>
         </div>
         
@@ -269,13 +306,15 @@ export default function PondCleanupLanding() {
       </div>
 
       {/* JOB TYPES & CAPABILITIES */}
-      <section className="mx-auto max-w-7xl px-6 py-16 water-gradient">
+      <section id="job-types" className="mx-auto max-w-7xl px-6 py-16 water-gradient">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-4 gradient-text">
             Professional Equipment & Services
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Advanced amphibious equipment for all types of pond and lake maintenance
+            Advanced amphibious equipment for all types of pond and lake maintenance. 
+            <a href="#cutting-excavation" className="text-blue-600 hover:text-blue-800 underline">View detailed specifications</a> or 
+            <a href="#farm-services" className="text-blue-600 hover:text-blue-800 underline">learn about farm services</a>.
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-2">
@@ -298,61 +337,134 @@ export default function PondCleanupLanding() {
             <CardContent className="space-y-8">
               {/* Core Functions & Job Types */}
               <div>
-                <h3 className="text-xl font-semibold mb-4 gradient-text">Core Functions & Job Types</h3>
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="text-center mb-8">
+                  <h3 className="text-3xl font-bold tracking-tight mb-4 gradient-text">Core Functions & Job Types</h3>
+                  <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                    Our machine delivers comprehensive aquatic solutions through four specialized operational categories, 
+                    each designed to address specific challenges in water management and environmental restoration.
+                  </p>
+                </div>
+                
+                <div className="grid gap-8 lg:grid-cols-2">
                   {/* Aquatic Vegetation Management */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <Leaf className="h-5 w-5 text-green-600" />
-                      <h4 className="font-semibold">Aquatic Vegetation Management</h4>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="rounded-lg border p-3 hover-lift glass-effect">
-                        <div className="font-medium text-sm">Cutting / Trimming</div>
-                        <div className="text-xs text-muted-foreground">Efficiently slices through dense aquatic plants like reeds, water lilies, and overgrown vegetation using sharp, adjustable cutting tools. This supports habitat restoration and waterway health.</div>
+                  <motion.div 
+                    className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-green-50 to-emerald-50 p-6 hover-lift shadow-glow"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-green-200/20 to-transparent rounded-full -translate-y-16 translate-x-16"></div>
+                    <div className="relative">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="p-3 rounded-xl bg-green-100 group-hover:bg-green-200 transition-colors">
+                          <Leaf className="h-6 w-6 text-green-700" />
+                        </div>
+                        <h4 className="text-xl font-bold text-green-900">Aquatic Vegetation Management</h4>
                       </div>
-                      <div className="rounded-lg border p-3 hover-lift glass-effect">
-                        <div className="font-medium text-sm">Collecting & Raking</div>
-                        <div className="text-xs text-muted-foreground">Once vegetation is cut, our machine can rake and collect debris, including logs, floating biomass, and plant matter—reducing eutrophication risk and improving aesthetics.</div>
+                      <div className="space-y-4">
+                        <div className="rounded-xl border border-green-200 bg-white/50 p-4 hover:bg-white/80 transition-colors">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Scissors className="h-4 w-4 text-green-600" />
+                            <div className="font-semibold text-green-900">Cutting & Trimming</div>
+                          </div>
+                          <div className="text-sm text-green-800 leading-relaxed">
+                            Efficiently slices through dense aquatic plants like reeds, water lilies, and overgrown vegetation 
+                            using sharp, adjustable cutting tools. Supports habitat restoration and waterway health.
+                          </div>
+                        </div>
+                        <div className="rounded-xl border border-green-200 bg-white/50 p-4 hover:bg-white/80 transition-colors">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Hand className="h-4 w-4 text-green-600" />
+                            <div className="font-semibold text-green-900">Collecting & Raking</div>
+                          </div>
+                          <div className="text-sm text-green-800 leading-relaxed">
+                            Rakes and collects debris including logs, floating biomass, and plant matter—reducing 
+                            eutrophication risk and improving water aesthetics.
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Excavation & Digging */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <Wrench className="h-5 w-5 text-blue-600" />
-                      <h4 className="font-semibold">Excavation & Digging</h4>
+                  <motion.div 
+                    className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-blue-50 to-sky-50 p-6 hover-lift shadow-glow"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-200/20 to-transparent rounded-full -translate-y-16 translate-x-16"></div>
+                    <div className="relative">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="p-3 rounded-xl bg-blue-100 group-hover:bg-blue-200 transition-colors">
+                          <Wrench className="h-6 w-6 text-blue-700" />
+                        </div>
+                        <h4 className="text-xl font-bold text-blue-900">Excavation & Digging</h4>
+                      </div>
+                      <div className="rounded-xl border border-blue-200 bg-white/50 p-4 hover:bg-white/80 transition-colors">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Grip className="h-4 w-4 text-blue-600" />
+                          <div className="font-semibold text-blue-900">Wetland Excavation</div>
+                        </div>
+                        <div className="text-sm text-blue-800 leading-relaxed">
+                          Equipped with digging arms and interchangeable buckets or grip tools, our machine handles 
+                          excavation tasks even in hard-to-reach aquatic environments with precision control.
+                        </div>
+                      </div>
                     </div>
-                    <div className="rounded-lg border p-3 hover-lift glass-effect">
-                      <div className="font-medium text-sm">Digging in Wetlands</div>
-                      <div className="text-xs text-muted-foreground">Equipped with digging arms and interchangeable buckets or grip tools, our machine can handle excavation tasks even in hard-to-reach aquatic environments.</div>
-                    </div>
-                  </div>
+                  </motion.div>
 
                   {/* Dredging & Sediment Removal */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <Waves className="h-5 w-5 text-cyan-600" />
-                      <h4 className="font-semibold">Dredging & Sediment Removal</h4>
+                  <motion.div 
+                    className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-cyan-50 to-teal-50 p-6 hover-lift shadow-glow"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-cyan-200/20 to-transparent rounded-full -translate-y-16 translate-x-16"></div>
+                    <div className="relative">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="p-3 rounded-xl bg-cyan-100 group-hover:bg-cyan-200 transition-colors">
+                          <Waves className="h-6 w-6 text-cyan-700" />
+                        </div>
+                        <h4 className="text-xl font-bold text-cyan-900">Dredging & Sediment Removal</h4>
+                      </div>
+                      <div className="rounded-xl border border-cyan-200 bg-white/50 p-4 hover:bg-white/80 transition-colors">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Droplets className="h-4 w-4 text-cyan-600" />
+                          <div className="font-semibold text-cyan-900">Suction & Pump Dredging</div>
+                        </div>
+                        <div className="text-sm text-cyan-800 leading-relaxed">
+                          With specialized dredging attachments—such as pump tools—our machine effectively clears 
+                          silt, sludge, and sediment, maintaining optimal water depth and quality.
+                        </div>
+                      </div>
                     </div>
-                    <div className="rounded-lg border p-3 hover-lift glass-effect">
-                      <div className="font-medium text-sm">Suction or Pump Dredging</div>
-                      <div className="text-xs text-muted-foreground">With specialized dredging attachments—such as pump tools—our machine effectively clears silt, sludge, and sediment, maintaining water depth and quality.</div>
-                    </div>
-                  </div>
+                  </motion.div>
 
                   {/* Cleanup & Pollution Control */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <Shield className="h-5 w-5 text-red-600" />
-                      <h4 className="font-semibold">Cleanup & Pollution Control</h4>
+                  <motion.div 
+                    className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-red-50 to-rose-50 p-6 hover-lift shadow-glow"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-200/20 to-transparent rounded-full -translate-y-16 translate-x-16"></div>
+                    <div className="relative">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="p-3 rounded-xl bg-red-100 group-hover:bg-red-200 transition-colors">
+                          <Shield className="h-6 w-6 text-red-700" />
+                        </div>
+                        <h4 className="text-xl font-bold text-red-900">Cleanup & Pollution Control</h4>
+                      </div>
+                      <div className="rounded-xl border border-red-200 bg-white/50 p-4 hover:bg-white/80 transition-colors">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Shield className="h-4 w-4 text-red-600" />
+                          <div className="font-semibold text-red-900">Debris & Contamination Removal</div>
+                        </div>
+                        <div className="text-sm text-red-800 leading-relaxed">
+                          Manages floating trash, plastic waste, and invasive aquatic plants. Frequently deployed in 
+                          urban rivers, nature reserves, wastewater treatment sites, and emergency response scenarios.
+                        </div>
+                      </div>
                     </div>
-                    <div className="rounded-lg border p-3 hover-lift glass-effect">
-                      <div className="font-medium text-sm">Debris & Contamination Removal</div>
-                      <div className="text-xs text-muted-foreground">Our machine manages floating trash, plastic waste, and invasive aquatic plants. It is also frequently used in urban rivers, nature reserves, wastewater treatment sites, and oil spill emergencies.</div>
-                    </div>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
 
@@ -583,7 +695,7 @@ export default function PondCleanupLanding() {
       </section>
 
       {/* CUT & PULL CAPABILITIES */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section id="cutting-excavation" className="mx-auto max-w-7xl px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4 gradient-text">Cut & Pull Capabilities</h2>
           <p className="text-lg text-muted-foreground">Professional cutting and excavation equipment with precise specifications</p>
@@ -733,7 +845,7 @@ export default function PondCleanupLanding() {
       </section>
 
       {/* FARM SERVICES SECTION */}
-      <section className="mx-auto max-w-7xl px-6 py-16 nature-gradient">
+      <section id="farm-services" className="mx-auto max-w-7xl px-6 py-16 nature-gradient">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Tractor className="h-8 w-8 text-green-600" />
@@ -741,7 +853,9 @@ export default function PondCleanupLanding() {
           </div>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Specialized pond and lake maintenance for farmers, ranchers, and agricultural operations. 
-            Keep your irrigation systems flowing and livestock watering areas clean year-round.
+            Keep your irrigation systems flowing and livestock watering areas clean year-round. 
+            <a href="#before-after" className="text-blue-600 hover:text-blue-800 underline">See our results</a> or 
+            <a href="#contact-form" className="text-blue-600 hover:text-blue-800 underline">get a free quote</a>.
           </p>
         </div>
         
@@ -987,7 +1101,11 @@ export default function PondCleanupLanding() {
       <section id="contact-form" className="mx-auto max-w-7xl px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4 gradient-text">Calculate Your Investment Return</h2>
-          <p className="text-lg text-muted-foreground">See how our professional equipment delivers exceptional value and rapid ROI</p>
+          <p className="text-lg text-muted-foreground">
+            See how our professional equipment delivers exceptional value and rapid ROI. 
+            <a href="#job-types" className="text-blue-600 hover:text-blue-800 underline">Learn about our services</a> or 
+            <a href="#before-after" className="text-blue-600 hover:text-blue-800 underline">see our results</a>.
+          </p>
         </div>
         
         <div className="grid gap-8 md:grid-cols-2">
@@ -1142,10 +1260,14 @@ export default function PondCleanupLanding() {
       </section>
 
       {/* BEFORE & AFTER SECTION */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section id="before-after" className="mx-auto max-w-7xl px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Amazing Transformations</h2>
-          <p className="text-lg text-muted-foreground">See the incredible results our professional equipment delivers</p>
+          <p className="text-lg text-muted-foreground">
+            See the incredible results our professional equipment delivers. 
+            <a href="#job-types" className="text-blue-600 hover:text-blue-800 underline">Learn how we do it</a> or 
+            <a href="#contact-form" className="text-blue-600 hover:text-blue-800 underline">get your free consultation</a>.
+          </p>
         </div>
         
         <div className="grid gap-8 md:grid-cols-2">
@@ -1817,6 +1939,19 @@ function ServiceAreas() {
         Serving Utah, Wyoming, Idaho, and Arizona with professional pond and lake cleanup services. 
         Emergency response available 24/7 across all service areas.
       </p>
+      
+      {/* Back to Top Button */}
+      <div className="text-center mt-8">
+        <Button 
+          variant="outline" 
+          size="lg" 
+          className="hover-lift shadow-glow"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          <Waves className="h-4 w-4 mr-2" />
+          Back to Top
+        </Button>
+      </div>
     </div>
   );
 }
