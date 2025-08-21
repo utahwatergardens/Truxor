@@ -29,42 +29,41 @@ const BRAND = {
   brochure: "/downloads/pond-cleanup-services.pdf",
 };
 
-const SPEC = {
-  engine: "50 hp turbo diesel",
-  draft: "Shallow water < 0.5m",
-  transport: "Towable, rapid deploy",
-  width: "2.05 m",
-  weight: "1,850 kg (base)",
-  payload: "Up to 500 kg",
-  speed: "7 km/h water, 12 km/h land",
-  emissions: "Stage V compliant",
+const SERVICES = {
+  excavation: "Aquatic excavation and dredging",
+  vegetation: "Invasive vegetation removal",
+  shoreline: "Shoreline restoration and cleanup",
+  debris: "Debris and sediment removal",
+  maintenance: "Preventive maintenance programs",
+  emergency: "Emergency response services",
+  habitat: "Habitat restoration projects",
+  compliance: "Environmental compliance work",
 };
 
-const ATTACHMENTS = [
-  { icon: <Wrench className="h-5 w-5" />, name: "Aquatic Cutter", desc: "Rotary cutter for dense reeds and cattails." },
-  { icon: <Zap className="h-5 w-5" />, name: "Dredge Pump", desc: "Sediment removal up to 80 m³/h (site dependent)." },
-  { icon: <Hand className="h-5 w-5" />, name: "Rake & Grab", desc: "Precision debris recovery and shoreline cleanup." },
-  { icon: <Leaf className="h-5 w-5" />, name: "Weed Harvester", desc: "High-throughput aquatic vegetation collection." },
+const JOB_TYPES = [
+  { icon: <Wrench className="h-5 w-5" />, name: "Excavation & Dredging", desc: "Remove sediment, muck, and debris from ponds and lakes." },
+  { icon: <Leaf className="h-5 w-5" />, name: "Vegetation Control", desc: "Clear invasive weeds, reeds, and overgrown vegetation." },
+  { icon: <Hand className="h-5 w-5" />, name: "Shoreline Restoration", desc: "Clean and restore eroded or overgrown shorelines." },
+  { icon: <Shield className="h-5 w-5" />, name: "Emergency Response", desc: "Rapid response for flooding, debris removal, and urgent situations." },
 ];
 
-const BENEFITS = [
-  { icon: <Waves className="h-5 w-5" />, title: "True Amphibious", desc: "Seamless land-water transitions reduce downtime." },
-  { icon: <Fuel className="h-5 w-5" />, title: "Fuel Efficient", desc: "Optimized hydraulics and power curve minimize burn." },
-  { icon: <Shield className="h-5 w-5" />, title: "Operator Safe", desc: "ROPS-ready platform and excellent visibility." },
-  { icon: <Gauge className="h-5 w-5" />, title: "High Uptime", desc: "Modular attachments and fast service access." },
+const SITUATIONS = [
+  { icon: <Waves className="h-5 w-5" />, title: "Overgrown Ponds", desc: "Restore ponds overrun with weeds and vegetation." },
+  { icon: <Fuel className="h-5 w-5" />, title: "Sediment Buildup", desc: "Remove years of accumulated muck and debris." },
+  { icon: <Shield className="h-5 w-5" />, title: "Flood Damage", desc: "Emergency cleanup after storms and flooding." },
+  { icon: <Gauge className="h-5 w-5" />, title: "Shoreline Erosion", desc: "Restore damaged or eroded shorelines." },
 ];
 
 const FAQ = [
   { q: "How much does pond cleanup cost?", a: "Pond cleanup costs vary based on size, condition, and specific services needed. We offer free consultations and quotes. Typical projects range from $500-$5,000 depending on pond size and complexity." },
-  { q: "How long does a typical cleanup take?", a: "Most pond cleanups are completed in 1-3 days depending on size and condition. Our professional equipment is highly efficient and can handle large areas quickly while maintaining quality results." },
+  { q: "What types of jobs do you handle?", a: "We handle excavation, vegetation removal, shoreline restoration, emergency response, and preventive maintenance. From small residential ponds to large commercial lakes, we have the equipment and expertise." },
   { q: "Do you offer maintenance plans?", a: "Yes! We offer seasonal maintenance plans to keep your pond healthy year-round. This includes regular inspections, vegetation control, and water quality monitoring to prevent future problems." },
-  { q: "Is your equipment safe for fish and wildlife?", a: "Absolutely! Our equipment is designed to be environmentally friendly. It uses selective cutting methods that preserve beneficial vegetation while removing invasive species, ensuring minimal impact on fish and wildlife." },
+  { q: "How quickly can you respond to emergencies?", a: "We provide rapid response for emergency situations like flooding, storm damage, or urgent cleanup needs. Contact us immediately for emergency services." },
 ];
 
 
 
 export default function PondCleanupLanding() {
-  const [units, setUnits] = useState<"metric" | "imperial">("metric");
   const [email, setEmail] = useState("");
 
   const jsonLd = useMemo(() => ({
@@ -140,28 +139,27 @@ export default function PondCleanupLanding() {
         <div className="pointer-events-none absolute inset-0 bg-black/40" />
       </section>
 
-      {/* STICKY SPEC BAR */}
+      {/* STICKY SERVICES BAR */}
       <div className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur">
         <div className="mx-auto max-w-7xl px-6 py-3">
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-            <SpecItem label="Engine" value={SPEC.engine} />
-            <SpecItem label="Payload" value={SPEC.payload} />
-            <SpecItem label="Speed" value={SPEC.speed} />
-            <SpecItem label="Emissions" value={SPEC.emissions} />
-            <div className="ml-auto flex items-center gap-2">
-              <span className="text-xs">Units</span>
-              <Toggle pressed={units === "imperial"} onPressedChange={(p) => setUnits(p ? "imperial" : "metric")}>Imperial</Toggle>
+            <ServiceItem label="Excavation" value={SERVICES.excavation} />
+            <ServiceItem label="Vegetation" value={SERVICES.vegetation} />
+            <ServiceItem label="Shoreline" value={SERVICES.shoreline} />
+            <ServiceItem label="Emergency" value={SERVICES.emergency} />
+            <div className="ml-auto">
+              <Button size="sm" variant="outline">Get Quote</Button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 3D / VISUALIZER */}
+      {/* JOB TYPES & CAPABILITIES */}
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-8 md:grid-cols-2">
           <Card className="overflow-hidden">
             <CardHeader>
-              <CardTitle>Explore Our Equipment</CardTitle>
+              <CardTitle>Our Equipment in Action</CardTitle>
             </CardHeader>
             <CardContent>
               <ModelViewer />
@@ -170,46 +168,17 @@ export default function PondCleanupLanding() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Mission-ready attachments</CardTitle>
+              <CardTitle>Types of Jobs We Handle</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-4 sm:grid-cols-2">
-              {[
-                { 
-                  icon: <Wrench className="h-5 w-5" />, 
-                  name: "Aquatic Cutter", 
-                  desc: "Rotary cutter for dense reeds and cattails.",
-                  image: "/images/New Images/Truxor_Cutting-Collecting_3_web.jpg"
-                },
-                { 
-                  icon: <Zap className="h-5 w-5" />, 
-                  name: "Dredge Pump", 
-                  desc: "Sediment removal up to 80 m³/h (site dependent).",
-                  image: "/images/New Images/Truxor_Cutting-Collecting_7_web.jpg"
-                },
-                { 
-                  icon: <Hand className="h-5 w-5" />, 
-                  name: "Rake & Grab", 
-                  desc: "Precision debris recovery and shoreline cleanup.",
-                  image: "/images/New Images/Truxor_Cutting-Collecting_11_web.jpg"
-                },
-                { 
-                  icon: <Leaf className="h-5 w-5" />, 
-                  name: "Weed Harvester", 
-                  desc: "High-throughput aquatic vegetation collection.",
-                  image: "/images/New Images/Truxor_Cutting-Collecting_16_web.jpg"
-                },
-              ].map((a) => (
-                <div key={a.name} className="flex gap-3 rounded-xl border p-4 hover:shadow-md transition-shadow">
-                  <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                    <img 
-                      src={a.image} 
-                      alt={a.name} 
-                      className="w-full h-full object-cover"
-                    />
+              {JOB_TYPES.map((job) => (
+                <div key={job.name} className="flex gap-3 rounded-xl border p-4 hover:shadow-md transition-shadow">
+                  <div className="flex-shrink-0">
+                    {job.icon}
                   </div>
                   <div>
-                    <div className="font-medium">{a.name}</div>
-                    <div className="text-sm text-muted-foreground">{a.desc}</div>
+                    <div className="font-medium">{job.name}</div>
+                    <div className="text-sm text-muted-foreground">{job.desc}</div>
                   </div>
                 </div>
               ))}
@@ -218,77 +187,52 @@ export default function PondCleanupLanding() {
         </div>
       </section>
 
-      {/* BENEFITS */}
+      {/* SITUATIONS WE HANDLE */}
       <section className="mx-auto max-w-7xl px-6 pb-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Why Choose Our Equipment</h2>
-          <p className="text-lg text-muted-foreground">Professional equipment capabilities that deliver results</p>
+          <h2 className="text-3xl font-bold mb-4">Situations We Handle</h2>
+          <p className="text-lg text-muted-foreground">Common problems we solve for property owners and managers</p>
         </div>
         
         <div className="grid gap-6 md:grid-cols-4">
-          {[
-            { 
-              icon: <Waves className="h-8 w-8 text-blue-600" />, 
-              title: "True Amphibious", 
-              desc: "Seamless land-water transitions reduce downtime.",
-              image: "/images/New Images/Truxor_Cutting-Collecting_5_web.jpg"
-            },
-            { 
-              icon: <Fuel className="h-8 w-8 text-green-600" />, 
-              title: "Fuel Efficient", 
-              desc: "Optimized hydraulics and power curve minimize burn.",
-              image: "/images/New Images/Truxor_Cutting-Collecting_12_web.jpg"
-            },
-            { 
-              icon: <Shield className="h-8 w-8 text-purple-600" />, 
-              title: "Operator Safe", 
-              desc: "ROPS-ready platform and excellent visibility.",
-              image: "/images/New Images/Truxor_Cutting-Collecting_18_web.jpg"
-            },
-            { 
-              icon: <Gauge className="h-8 w-8 text-orange-600" />, 
-              title: "High Uptime", 
-              desc: "Modular attachments and fast service access.",
-              image: "/images/New Images/Truxor_Cutting-Collecting_22_web.jpg"
-            },
-          ].map((b, i) => (
-            <Card key={b.title} className="overflow-hidden hover:shadow-lg transition-shadow">
+          {SITUATIONS.map((situation, i) => (
+            <Card key={situation.title} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative h-48">
                 <img 
-                  src={b.image} 
-                  alt={`${b.title} - ${b.desc}`} 
+                  src={`/images/New Images/Truxor_Cutting-Collecting_${5 + i * 4}_web.jpg`} 
+                  alt={`${situation.title} - ${situation.desc}`} 
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black/30"></div>
                 <div className="absolute top-4 left-4">
-                  {b.icon}
+                  {situation.icon}
                 </div>
               </div>
               <CardContent className="p-6">
-                <div className="text-lg font-semibold mb-2">{b.title}</div>
-                <div className="text-sm text-muted-foreground">{b.desc}</div>
+                <div className="text-lg font-semibold mb-2">{situation.title}</div>
+                <div className="text-sm text-muted-foreground">{situation.desc}</div>
               </CardContent>
             </Card>
           ))}
         </div>
       </section>
 
-      {/* SPEC + COMPARISON */}
+      {/* SERVICES & CAPABILITIES */}
       <section className="mx-auto max-w-7xl px-6 py-16">
-        <Tabs defaultValue="specs">
+        <Tabs defaultValue="services">
           <TabsList>
-            <TabsTrigger value="specs">Specifications</TabsTrigger>
-            <TabsTrigger value="compare">Compare Models</TabsTrigger>
-            <TabsTrigger value="transport">Transport & Footprint</TabsTrigger>
+            <TabsTrigger value="services">Our Services</TabsTrigger>
+            <TabsTrigger value="areas">Service Areas</TabsTrigger>
+            <TabsTrigger value="process">Our Process</TabsTrigger>
           </TabsList>
-          <TabsContent value="specs" className="mt-6">
-            <SpecGrid units={units} />
+          <TabsContent value="services" className="mt-6">
+            <ServicesGrid />
           </TabsContent>
-          <TabsContent value="compare" className="mt-6">
-            <Comparison />
+          <TabsContent value="areas" className="mt-6">
+            <ServiceAreas />
           </TabsContent>
-          <TabsContent value="transport" className="mt-6">
-            <Transport />
+          <TabsContent value="process" className="mt-6">
+            <OurProcess />
           </TabsContent>
         </Tabs>
       </section>
@@ -315,27 +259,27 @@ export default function PondCleanupLanding() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Request a tailored quote</CardTitle>
+              <CardTitle>Get Your Free Quote</CardTitle>
             </CardHeader>
             <CardContent>
               <form className="grid gap-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="email">Work email</Label>
-                  <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="alex@contractingco.com" />
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com" />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="use">Primary use case</Label>
-                  <Input id="use" placeholder="e.g., reed cutting, dredging, spill response" />
+                  <Label htmlFor="service">Service Needed</Label>
+                  <Input id="service" placeholder="e.g., pond cleanup, vegetation removal, emergency response" />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="location">Operating region</Label>
-                  <Input id="location" placeholder="City, State / Country" />
+                  <Label htmlFor="location">Location</Label>
+                  <Input id="location" placeholder="City, Utah" />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="notes">Notes</Label>
-                  <Textarea id="notes" placeholder="Project scope, timelines, constraints" />
+                  <Label htmlFor="notes">Project Details</Label>
+                  <Textarea id="notes" placeholder="Describe your pond/lake situation and any specific concerns" />
                 </div>
-                <Button className="justify-self-start">Send request</Button>
+                <Button className="justify-self-start">Get Free Quote</Button>
                 <p className="text-xs text-muted-foreground">By submitting, you agree to our privacy policy.</p>
               </form>
             </CardContent>
@@ -534,7 +478,7 @@ export default function PondCleanupLanding() {
   );
 }
 
-function SpecItem({ label, value }: { label: string; value: string }) {
+function ServiceItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center gap-2">
       <span className="text-xs uppercase tracking-wide text-muted-foreground">{label}</span>
@@ -543,90 +487,75 @@ function SpecItem({ label, value }: { label: string; value: string }) {
   );
 }
 
-function SpecGrid({ units }: { units: "metric" | "imperial" }) {
-  const rows = [
-    { k: "Engine", v: SPEC.engine },
-    { k: "Payload", v: SPEC.payload },
-    { k: "Speed", v: SPEC.speed },
-    { k: "Emissions", v: SPEC.emissions },
-    { k: "Operating draft", v: SPEC.draft },
-    { k: "Transport width", v: SPEC.width },
-    { k: "Operating weight", v: SPEC.weight },
+function ServicesGrid() {
+  const services = [
+    { name: "Excavation & Dredging", desc: "Remove sediment, muck, and debris from ponds and lakes" },
+    { name: "Vegetation Control", desc: "Clear invasive weeds, reeds, and overgrown vegetation" },
+    { name: "Shoreline Restoration", desc: "Clean and restore eroded or overgrown shorelines" },
+    { name: "Emergency Response", desc: "Rapid response for flooding, debris removal, and urgent situations" },
+    { name: "Preventive Maintenance", desc: "Regular maintenance programs to keep water features healthy" },
+    { name: "Habitat Restoration", desc: "Restore natural habitats for fish and wildlife" },
   ];
   return (
     <div className="grid gap-3 md:grid-cols-2">
-      {rows.map(r => (
-        <div key={r.k} className="flex items-center justify-between rounded-xl border p-4">
-          <span className="text-sm text-muted-foreground">{r.k}</span>
-          <span className="font-medium">{convert(r.k, r.v, units)}</span>
+      {services.map(service => (
+        <div key={service.name} className="flex items-center justify-between rounded-xl border p-4">
+          <div>
+            <span className="font-medium">{service.name}</span>
+            <p className="text-sm text-muted-foreground">{service.desc}</p>
+          </div>
         </div>
       ))}
     </div>
   );
 }
 
-function convert(key: string, val: string, units: "metric" | "imperial") {
-  // Super lightweight example; extend with a robust converter as needed
-  if (units === "metric") return val;
-  try {
-    if (/\bkg\b/.test(val)) {
-      const n = parseFloat(val.replace(/[^0-9.]/g, ""));
-      return `${Math.round(n * 2.20462)} lb`;
-    }
-    if (/\bm\b/.test(val)) {
-      const n = parseFloat(val.replace(/[^0-9.]/g, ""));
-      return `${(n * 3.28084).toFixed(2)} ft`;
-    }
-    if (/\bkm\/h\b/.test(val)) {
-      const n = parseFloat(val.replace(/[^0-9.]/g, ""));
-      return `${(n * 0.621371).toFixed(1)} mph`;
-    }
-  } catch {}
-  return val;
-}
 
-function Comparison() {
-  const data = [
-    { model: "T40", power: 40, width: 1.9, payload: 380 },
-    { model: "T50", power: 50, width: 2.05, payload: 500 },
-    { model: "T60", power: 60, width: 2.1, payload: 600 },
+
+function ServiceAreas() {
+  const areas = [
+    { area: "Salt Lake City", services: "Full range of pond and lake services" },
+    { area: "Park City", services: "Mountain property water feature maintenance" },
+    { area: "Provo", services: "Residential and commercial pond cleanup" },
+    { area: "Ogden", services: "Industrial and recreational water management" },
+    { area: "St. George", services: "Desert landscape water feature restoration" },
+    { area: "Statewide", services: "Emergency response and large-scale projects" },
   ];
   return (
     <div className="grid gap-3">
-      {data.map(row => (
-        <div key={row.model} className="grid grid-cols-4 items-center gap-3 rounded-xl border p-4 text-sm">
-          <div className="font-semibold">{row.model}</div>
-          <div>{row.power} hp</div>
-          <div>{row.width} m</div>
-          <div>{row.payload} kg</div>
+      {areas.map(area => (
+        <div key={area.area} className="grid grid-cols-2 items-center gap-3 rounded-xl border p-4 text-sm">
+          <div className="font-semibold">{area.area}</div>
+          <div className="text-muted-foreground">{area.services}</div>
         </div>
       ))}
-      <p className="text-xs text-muted-foreground">Specs are illustrative; replace with verified figures.</p>
+      <p className="text-xs text-muted-foreground">Serving all of Utah with professional pond and lake cleanup services.</p>
     </div>
   );
 }
 
-function Transport() {
+function OurProcess() {
   return (
     <div className="grid gap-6 md:grid-cols-2">
       <Card>
         <CardHeader>
-          <CardTitle>Footprint & clearances</CardTitle>
+          <CardTitle>Our Process</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-3 text-sm">
-          <InfoLine icon={<Ruler className="h-4 w-4" />} label="Width" value={SPEC.width} />
-          <InfoLine icon={<ShipWheel className="h-4 w-4" />} label="Turning radius" value="Pivot steer (on spot)" />
-          <InfoLine icon={<Waves className="h-4 w-4" />} label="Shore gradient" value="Up to 30% (surface dependent)" />
+          <InfoLine icon={<Ruler className="h-4 w-4" />} label="1. Assessment" value="Site evaluation and project planning" />
+          <InfoLine icon={<ShipWheel className="h-4 w-4" />} label="2. Proposal" value="Detailed quote and timeline" />
+          <InfoLine icon={<Waves className="h-4 w-4" />} label="3. Execution" value="Professional equipment deployment" />
+          <InfoLine icon={<Shield className="h-4 w-4" />} label="4. Completion" value="Quality check and follow-up" />
         </CardContent>
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>Logistics</CardTitle>
+          <CardTitle>Why Choose Us</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-3 text-sm">
-          <InfoLine icon={<Shield className="h-4 w-4" />} label="Compliance" value="CE / Stage V / ROPS-ready" />
-          <InfoLine icon={<Wrench className="h-4 w-4" />} label="Service" value="Fast-access panels, modular hydraulics" />
-          <InfoLine icon={<Hand className="h-4 w-4" />} label="Crew" value="Single operator with optional spotter" />
+          <InfoLine icon={<Shield className="h-4 w-4" />} label="Experience" value="Years of professional pond cleanup" />
+          <InfoLine icon={<Wrench className="h-4 w-4" />} label="Equipment" value="Advanced amphibious machinery" />
+          <InfoLine icon={<Hand className="h-4 w-4" />} label="Service" value="Reliable, on-time, professional" />
         </CardContent>
       </Card>
     </div>
