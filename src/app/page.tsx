@@ -17,8 +17,11 @@ import Image from "next/image";
 
 // Optional 3D viewer placeholder (swap with react-three-fiber or model-viewer as needed)
 
-// Optional 3D viewer placeholder
-const ModelViewer = dynamic(() => import("@/components/ModelViewerPlaceholder"), { ssr: false, loading: () => <div className="h-96 w-full animate-pulse rounded-2xl bg-muted" /> });
+// 3D viewer with attachment controls
+const ModelViewer = dynamic(() => import("@/components/ModelViewer"), { ssr: false, loading: () => <div className="h-96 w-full animate-pulse rounded-2xl bg-muted" /> });
+
+// Contact form with CRM integration
+const ContactForm = dynamic(() => import("@/components/ContactForm"), { ssr: false });
 
 // --- Editable content for Pond Cleanup business ---
 const BRAND = {
@@ -330,33 +333,7 @@ export default function PondCleanupLanding() {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Get Your Free Quote</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form className="grid gap-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com" />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="service">Service Needed</Label>
-                  <Input id="service" placeholder="e.g., pond cleanup, vegetation removal, emergency response" />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="location">Location</Label>
-                  <Input id="location" placeholder="City, Utah" />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="notes">Project Details</Label>
-                  <Textarea id="notes" placeholder="Describe your pond/lake situation and any specific concerns" />
-                </div>
-                <Button className="justify-self-start">Get Free Quote</Button>
-                <p className="text-xs text-muted-foreground">By submitting, you agree to our privacy policy.</p>
-              </form>
-            </CardContent>
-          </Card>
+                      <ContactForm />
         </div>
       </section>
 
